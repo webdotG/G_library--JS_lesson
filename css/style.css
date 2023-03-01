@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+h1, h2, h3 {
+    margin: 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.example{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.example__description, .example__solution{
+    flex-grow: 0.5;
+    display: flex;
+    justify-content: center;
+}
+
+.terminal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.terminal__result{
+    margin: 0;
+}
+
+.pagination{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+

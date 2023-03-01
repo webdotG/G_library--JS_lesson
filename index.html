@@ -7,33 +7,55 @@
 </head>
 <body>
 <header>
-    <h1 class="lesson-topic">if multiple</h1>
+    <h1 class="lesson-topic">if</h1>
 </header>
 <main>
-    <h2 class="example__title">example</h2>
-        <div class="example">
-            <section class="example__description">
-                <p class="example__paragraph">
-                    some task
-                </p>
-            </section>
-            <section class="example__solution">
-                <p class="example__code">
-                    some code
-                </p>
-            </section>
-            <section class="example__terminal">
-                <p class="example__result">
-                    some result
-                </p>
-            </section>
-        </div>
+    <h2 class="example__title">вложенный - if - </h2>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                вложенный if<br>
+                используется для того то и того то<br>
+                с ним можно решить такие то задачи
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let temperature = 20;<br>
+                let isRaining = false;<br>
+                let minutes = 0;<br>
+                <br>
+                if (isRaining){<br>
+                console.log ( minutes )<br>
+                } else {<br>
+                if (temperature >=10 && temperature < 15 ) {<br>
+                minutes = 30<br>
+                } else{<br>
+                minutes = 0}<br>
+                if ( temperature >= 15 && temperature < 25 ){<br>
+                minutes = 40<br>
+                }else{<br>
+                minutes = 0}<br>
+                if ( temperature >=25 && temperature < 35 ){<br>
+                minutes = 20<br>
+                }else{<br>
+                minutes = 0}<br>
+                }<br>
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h3 class="terminal__window">terminal</h3>
+        <p class="terminal__result">
+            some result
+        </p>
+    </section>
 </main>
 <footer>
-<div class="pagination">
-    <button class="pagination__btn pagination__btn--previous">previous</button>
-    <button class="pagination__btn pagination__btn--next">next</button>
-</div>
+    <div class="pagination">
+        <a class="pagination__btn pagination__btn--previous">previous</a>
+        <a class="pagination__btn pagination__btn--next">next</a>
+    </div>
 </footer>
 <script src="index.js"></script>
 </body>
