@@ -3,6 +3,18 @@ body {
     padding: 0;
     font-family: sans-serif;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 h1, h2, h3 {
     margin: 0;
     padding-top: 25px;
@@ -10,29 +22,44 @@ h1, h2, h3 {
     text-align: center;
 }
 
-.example{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.page-name {
+    font-size: 21px;
 }
 
-.example__description, .example__solution{
-    flex-grow: 0.5;
-    display: flex;
-    justify-content: center;
-}
-
-.terminal{
+.content-list {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.terminal__result{
+.content-list__item {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.example {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.example__description, .example__solution {
+    flex-grow: 0.5;
+    display: flex;
+    justify-content: center;
+}
+
+.terminal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.terminal__result {
     margin: 0;
 }
 
-.pagination{
+.pagination {
     padding-top: 25px;
     padding-bottom: 25px;
     display: flex;
