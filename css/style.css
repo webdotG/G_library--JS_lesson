@@ -36,17 +36,36 @@ h1, h2, h3 {
     padding-top: 15px;
     padding-bottom: 10px;
 }
+.lesson-topic{
+    max-width: 80%;
+    margin: 0 auto;
+    border-bottom: 2px tomato solid;
+}
+.example__title {
+    padding-top: 25px;
+}
 
 .example {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
 .example__description, .example__solution {
-    flex-grow: 0.5;
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 50%;
     display: flex;
     justify-content: center;
+}
+
+.example__paragraph {
+    margin: 0;
+    display: flex;
+    letter-spacing: 0.2px;
+}
+
+.example__solution{
+    letter-spacing: 0.2px;
 }
 
 .terminal {
@@ -56,7 +75,16 @@ h1, h2, h3 {
 }
 
 .terminal__result {
+    max-width: 80%;
+    padding-bottom: 35px;
     margin: 0;
+    letter-spacing: 0.2px;
+    font-size: 14px;
+    border-bottom: 2px blue solid;
+}
+
+.example__solution, .example__paragraph, .terminal__result {
+    align-items: center;
 }
 
 .pagination {

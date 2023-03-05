@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <h1 class="lesson-topic">массив</h1>
+</header>
+<main>
+    <h2 class="example__title">Меняем элементы местами</h2>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                считать медианную посещаемость, которая менее чувствительна к подобным всплескам. Медиана — это срединное значение массива. Чтобы его получить, вначале нужно отсортировать массив. Поэтому сейчас будем учиться делать сортировку.
+
+                При сортировке элементы массива меняются местами. Обычно это делается через промежуточную переменную, в которую сохраняется один из переставляемых элементов.
+                            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let usersByDay = [4, 1, 2, 3];
+                <br>--console.log(' берем массив :' + usersByDay);
+                <br>let swap = usersByDay[0];
+                <br>--console.log ('в переменную записываю число из массива под нулевым индексом :' + swap )
+                <br>usersByDay[0] = usersByDay[1];
+                <br>--console.log(' меняю цифру под нулевым индексом :4 на цифру под первым индексом :' + usersByDay[1] + ' в результате получаю :' + usersByDay);
+                <br>usersByDay[1] = swap;
+                <br>--console.log(' а сейчас говорю, что y цифры под индексом 1 значение переменной :' + swap + ' и получаю :' + usersByDay);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h3 class="terminal__window">terminal</h3>
+        <p class="terminal__result">
+            --берем массив :4,1,2,3 (String)
+            <br>--в переменную записываю число из массива под нулевым индексом :4 (String)
+            <br>--меняю цифру под нулевым индексом :4 на цифру под первым индексом :1 в результате получаю :1,1,2,3 (String)
+            <br>--а сейчас говорю, что y цифры под индексом 1 значение переменной :4 и получаю :1,4,2,3 (String)
+            <br>--[1, 4, 2, 3] (Array)
+            <br>--undefined (undefined)        </p>
+    </section>
+    <h2 class="example__title">Ищем минимальный элемент</h2>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Следующий шаг на пути к сортировке — поиск минимального элемента. И этот элемент мы будем искать не во всём массиве, а в указанной его части.
+
+                Для этого заведём переменную currentIndex. Она будет управлять начальным значением переменной цикла. Обратите внимание, что переменная цикла в этот раз будет называться j (это ещё одно типовое название).
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let usersByDay = [4, 1, 2, 3];
+                <br>--console.log(' берем массив :' + usersByDay);
+                <br>let swap = usersByDay[0];
+                <br>--console.log ('в переменную записываю число из массива под нулевым индексом :' + swap )
+                <br>usersByDay[0] = usersByDay[1];
+                <br>--console.log(' меняю цифру под нулевым индексом :4 на цифру под первым индексом :' + usersByDay[1] + ' в результате получаю :' + usersByDay);
+                <br>usersByDay[1] = swap;
+                <br>--console.log(' а сейчас говорю, что y цифры под индексом 1 значение переменной :' + swap + ' и получаю :' + usersByDay);
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h3 class="terminal__window">terminal</h3>
+        <p class="terminal__result">
+            --берем массив :4,1,2,3 (String)
+            <br>--в переменную записываю число из массива под нулевым индексом :4 (String)
+            <br>--меняю цифру под нулевым индексом :4 на цифру под первым индексом :1 в результате получаю :1,1,2,3 (String)
+            <br>--а сейчас говорю, что y цифры под индексом 1 значение переменной :4 и получаю :1,4,2,3 (String)
+            <br>--[1, 4, 2, 3] (Array)
+            <br>--undefined (undefined)        </p>
+    </section>
+    <h2 class="example__title">  </h2>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h3 class="terminal__window">terminal</h3>
+        <p class="terminal__result">
+
+        </p>
+    </section>
+    <h2 class="example__title">  </h2>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h3 class="terminal__window">terminal</h3>
+        <p class="terminal__result">
+
+        </p>
+    </section>
+</main>
+<footer>
+    <div class="pagination">
+        <a class="pagination__btn pagination__btn--previous">previous</a>
+        <a class="pagination__btn pagination__btn--next">next</a>
+    </div>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>
