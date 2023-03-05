@@ -9,9 +9,10 @@
 <body>
 <header>
     <a class="button-back-to" href="index.html">
-        <svg  class="button-back-to__img" fill="#000000" height="14px" width="14px" id="back-arrow" viewBox="0 0 219.151 219.151">
+        <svg class="button-back-to__img" fill="#000000" height="14px" width="14px" id="back-arrow"
+             viewBox="0 0 219.151 219.151">
             <g>
-	            <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+                <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
 		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
 		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
 		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
@@ -22,6 +23,301 @@
 </header>
 <main>
     <h2 class="program-name">калькулятор посещаемости</h2>
+    <h3 class="example__title">рассчитаем среднюю посещаемость сайта</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                нужно написать программу, которая поможет оценить посещаемость. В разные дни может заходить разное
+                количество людей главное, чтобы среднее количество посещений первое время не опускалось ниже 1000.
+                <br>Если посещаемость падает ниже, нужно отправить уведомление.
+                <br>Данные за первые три дня записаны в переменные.
+                <br>Рекомендуемое среднее значение посещаемости хранится в переменной expectedUsers.
+                <br>Нужно добавить в программу расчёт среднего количества посещений за наблюдаемый период.
+                <br>Среднее значение считается по формуле: сумма всех значений, поделённая на их количество. Давайте
+                посчитаем среднее количество посещений за день и выведем это значение в консоль.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let expectedUsers = 1000;
+                <br>let firstDayUsers = 812;
+                <br>let secondDayUsers = 1360;
+                <br>let thirdDayUsers = 657;
+                <br>
+                <br>--// Рассчитываем среднее значение посещаемости
+                <br>let averageUsers = (firstDayUsers + secondDayUsers + thirdDayUsers) / 3;
+                <br>--console.log('Средняя посещаемость: ' + averageUsers);
+                <br>if (averageUsers > expectedUsers) {
+                <br>--console.log('Посещаемость великолепна. Продолжай в том же духе!');
+                <br>} else {
+                <br>--console.log('Посещаемость так себе. Нужно поднапрячься!');
+                <br>}
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Средняя посещаемость: 943 (String)
+            <br>Посещаемость так себе. Нужно поднапрячься! (String)
+            <br>undefined (undefined)
+        </p>
+    </section>
+    <h3 class="example__title">массив данных и создание переменной(счетчика) среднего значения</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Рефакторинг — это переписывание программы, после которого она должна работать так же, но быть более
+                гибкой. Цель нашего рефакторинга — снизить трудоёмкость добавления и изменения массивного количества
+                данных.
+                <br>Рефакторинг мы будем делать плавно, не удаляя всю программу, а переписывая кусками. На первом этапе
+                избавимся от отдельных переменных для данных:
+                <br>Временно присвоим среднему значению нулевое значение.
+                <br>Создадим массив, в который перенесём значения из переменных.
+                <br>И теперь, когда переменные для данных в программе больше не используются, смело их удаляем.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let expectedUsers = 1000;
+                let usersByDay = [812, 1360, 657, 1247];
+
+                // Рассчитываем среднее значение посещаемости
+                let averageUsers = 0;
+                console.log('Средняя посещаемость: ' + averageUsers);
+                if (averageUsers > expectedUsers) {
+                console.log('Посещаемость великолепна. Продолжай в том же духе!');
+                } else {
+                console.log('Посещаемость так себе. Нужно поднапрячься!');
+                }
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Средняя посещаемость: 0 (String)
+            Посещаемость так себе. Нужно поднапрячься! (String)
+            undefined (undefined)
+        </p>
+    </section>
+    <h3 class="example__title">чтение из массива по индексу и переменная как индекс</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Нумерация элементов в массиве начинается с нуля: первый элемент массива идёт под номером ноль, второй —
+                под номером один, третий — два и так далее.
+
+                Если вам трудно запомнить такой необычный способ нумерации, вы можете использовать аналогию с годами:
+                летосчисление и возраст тоже начинаются с нуля. Если человеку 25 лет, это значит, что он живёт свой 26
+                год. А Михаэль Шумахер с 2000 по 2004 год выиграл пять чемпионских титулов подряд.
+
+                Подытожим. Чтобы получить первый элемент массива, например, usersByDay, нужно написать usersByDay[0].
+                Название переменной показывает, что мы обращаемся к массиву. Квадратные скобки говорят о том, что нам
+                нужен не весь массив, а только один из его элементов. В квадратные скобки мы передаём номер нужного нам
+                элемента.
+
+                В квадратные скобки можно передавать не только числа. Туда можно передать любое выражение. Это выражение
+                в итоге будет преобразовано в число.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let usersByDay = [812, 1360, 657, 1247];
+                let firstDayUsers = usersByDay[0];
+                --console.log(firstDayUsers);
+                let fourthDayUsers = usersByDay[3];
+                --console.log(fourthDayUsers);
+                let index = 0;
+                --console.log(usersByDay[index]);
+                index = 3;
+                --console.log(usersByDay[index]);
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            812 (Number)
+            1247 (Number)
+            812 (Number)
+            1247 (Number)
+        </p>
+    </section>
+    <h3 class="example__title">Длина массива</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                мы идём к перебору массивов в цикле!
+                Начальный индекс у массива мы знаем. Он равен нулю. Индексы в массиве возрастают на единицу. Использовать переменную в качестве индекса можно.
+
+                Получается, что мы можем задать переменной нулевое значение, а затем использовать её в цикле для доступа к элементам массива, наращивая в каждой итерации на единицу.
+
+                Остался один вопрос: когда остановить цикл? Для этого надо знать длину массива.
+
+                И здесь тоже всё отлично. Массивы умеют рассказывать о своей длине. Для этого используется команда [].length, которая знает о количестве элементов в массиве:
+
+                let numbers = [1, 2, 3, 4];
+                console.log(numbers.length); // Выведет: 4
+
+                С помощью обращения к length можно получить последний элемент массива, даже если вы не знаете, сколько элементов в нём хранится:
+
+                someBigArray[someBigArray.length - 1];
+
+                Разберём это выражение. Допустим, в этом большом массиве 100 элементов. Его длина будет равна 100. Индекс последнего, сотого, элемента будет равен 99, потому что нумерация в массивах начинается с нуля. Поэтому индекс последнего элемента вычисляется вычитанием единицы из длины.
+
+                С помощью команды [].length вы можете единообразно работать с любыми массивами.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let usersByDay = [812, 1360, 657, 1247, 1000];
+
+                console.log(usersByDay.length);
+                console.log(usersByDay[usersByDay.length - 1]);
+                console.log(usersByDay[usersByDay.length - 3]);
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            5 (Number)
+            1000 (Number)
+            657 (Number)
+            undefined (undefined)
+        </p>
+    </section>
+    <h3 class="example__title">цикл в массиве</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Циклы и массивы тесно связаны между собой. Для многих операций на массивах, например, подсчёта суммы элементов, используются циклы. Теперь и вы готовы использовать цикл для обхода массива.
+
+                Для этой задачи лучше всего подойдёт цикл for. Переменная цикла будет использоваться как индекс элементов массива. Поэтому зададим ей нулевое значение и будем увеличивать в каждой итерации на единицу, пока её значение не станет равным индексу последнего элемента.
+
+                Традиционное название переменной цикла i — это сокращение от index, то есть индекса или порядкового номера. Это тоже одно из соглашений среди программистов, которое позволяет сократить код.
+
+                Ещё один стилистический момент. Как лучше писать условие выхода из цикла? Есть два варианта. Рассмотрим их на примере массива из трёх элементов:
+
+                // Первый вариант: i < usersByDay.length
+                // usersByDay.length == 3
+
+                Подготовка: i = 0
+                1 итерация: i = 0; 0 < 3? да! действия первой итерации; i = 1
+                2 итерация: i = 1; 1 < 3? да! действия второй итерации; i = 2
+                3 итерация: i = 2; 2 < 3? да! действия третьей итерации; i = 3
+                4 итерация: i = 3; 3 < 3? нет! Завершаем цикл!
+
+                // Второй вариант: i <= usersByDay.length - 1
+                // usersByDay.length - 1 == 2
+
+                Подготовка: i = 0
+                1 итерация: i = 0; 0 <= 2? да! действия первой итерации; i = 1
+                2 итерация: i = 1; 1 <= 2? да! действия второй итерации; i = 2
+                3 итерация: i = 2; 2 <= 2? да! действия третьей итерации; i = 3
+                4 итерация: i = 3; 3 <= 2? нет! Завершаем цикл!
+
+                Оба варианта условия выхода, i < usersByDay.length и i <= usersByDay.length - 1, работают одинаково. Но пока мы будем использовать второй вариант, с вычитанием единицы. Он будет напоминать нам про непривычную нумерацию элементов массива, которая начинается с нуля.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let expectedUsers = 1000;
+                let usersByDay = [812, 1360, 657, 1247];
+
+                for (let i = 0; i <= usersByDay.length - 1; i++) {
+                console.log(usersByDay[i]);
+                }
+                // Рассчитываем среднее значение посещаемости
+                let averageUsers = 0;
+                console.log('Средняя посещаемость: ' + averageUsers);
+
+                if (averageUsers > expectedUsers) {
+                console.log('Посещаемость великолепна. Продолжай в том же духе!');
+                } else {
+                console.log('Посещаемость так себе. Нужно поднапрячься!');
+                }
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            812 (Number)
+            1360 (Number)
+            657 (Number)
+            1247 (Number)
+            Средняя посещаемость: 0 (String)
+            Посещаемость так себе. Нужно поднапрячься! (String)
+            undefined (undefined)
+        </p>
+    </section>
+    <h3 class="example__title">Суммирование в цикле</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                В цикле можно не только выводить элементы массива в консоль, но и проводить с ними какие-то операции. Например, суммировать. Вы уже делали это в части «Циклы» в этом задании.
+
+                Для этого нужно перед циклом завести переменную с нулевым значением. Затем на каждой итерации прибавлять к ней значение очередного элемента массива. В итоге после цикла в переменной окажется сумма всех элементов.
+
+                Наша задача — найти среднее значение. А для этого сначала нужно узнать сумму всех элементов.
+
+                Давайте перепишем цикл так, чтобы он не выводил значения элементов в консоль, а последовательно складывал их между собой и записывал в одну переменную.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let expectedUsers = 1000;
+                let usersByDay = [812, 1360, 657, 1247];
+                let totalUsers = 0;
+                for (let i = 0; i <= usersByDay.length - 1; i++) {
+                totalUsers += usersByDay[i];
+                }
+                console.log(totalUsers);
+                // Рассчитываем среднее значение посещаемости
+                let averageUsers = 0;
+                console.log('Средняя посещаемость: ' + averageUsers);
+
+                if (averageUsers > expectedUsers) {
+                console.log('Посещаемость великолепна. Продолжай в том же духе!');
+                } else {
+                console.log('Посещаемость так себе. Нужно поднапрячься!');
+                }
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            4076 (Number)
+            Средняя посещаемость: 0 (String)
+            Посещаемость так себе. Нужно поднапрячься! (String)
+            undefined (undefined)
+        </p>
+    </section>
+    <!--<h3 class="example__title"></h3>
+        <div class="example">
+            <section class="example__description">
+                <p class="example__paragraph">
+
+                </p>
+            </section>
+            <section class="example__solution">
+                <code class="example__code">
+
+                </code>
+            </section>
+        </div>
+        <section class="terminal">
+            <h4 class="terminal__window">terminal</h4>
+            <p class="terminal__result">
+
+            </p>
+        </section>-->
+
+
     <h3 class="example__title">Меняем элементы местами</h3>
     <div class="example">
         <section class="example__description">
@@ -100,30 +396,12 @@
             <br>--[1, 4, 2, 3] (Array)
             <br>--undefined (undefined) </p>
     </section>
-    <h3 class="example__title"></h3>
-    <div class="example">
-        <section class="example__description">
-            <p class="example__paragraph">
-
-            </p>
-        </section>
-        <section class="example__solution">
-            <code class="example__code">
-
-            </code>
-        </section>
-    </div>
-    <section class="terminal">
-        <h4 class="terminal__window">terminal</h4>
-        <p class="terminal__result">
-
-        </p>
-    </section>
 </main>
 <footer>
     <div class="pagination">
         <a class="pagination__btn pagination__btn--previous">
-            <svg  class="prev-btn" fill="#000000" height="14px" width="14px" id="back-arrow" viewBox="0 0 219.151 219.151">
+            <svg class="prev-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
                 <g>
                     <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
 		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
@@ -133,7 +411,8 @@
             </svg>
             предыдущая</a>
         <a class="pagination__btn pagination__btn--next">следующая
-            <svg  class="next-btn" fill="#000000" height="14px" width="14px" id="back-arrow" viewBox="0 0 219.151 219.151">
+            <svg class="next-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
                 <g>
                     <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
 		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
