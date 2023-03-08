@@ -297,6 +297,68 @@
             undefined (undefined)
         </p>
     </section>
+
+    <h3 class="example__title">Минимальный элемент найден!</h3>
+        <div class="example">
+            <section class="example__description">
+                <p class="example__paragraph">
+
+
+                    Почему начальное значение переменной цикла задано как currentIndex + 1? Это нужно, чтобы искать минимальное значение после элемента с позицией currentIndex.
+
+                    let currentIndex = 0;
+                    // Минимальный элемент ищем начиная со второй позиции
+                    // [4, 2, 1, 3]
+
+                    let currentIndex = 1;
+                    // Минимальный элемент ищем начиная с третьей позиции
+                    // [4, 2, 1, 3]
+
+                    Как найти минимальный элемент, расположенный после первого?
+
+                    Добавим переменную minValue для хранения минимального значения.
+                    Предположим, что первый элемент и есть минимальный. Поэтому до цикла сохраним в minValue значение первого элемента.
+                    На каждой итерации цикла сравниваем текущий элемент со значением minValue.
+                    Если текущий элемент меньше minValue, то записываем его в minValue.
+
+                    Если первый элемент и был минимальный, то в цикле значение minValue не изменится, если же после первого элемента были элементы с меньшим значением, то это значение запишется в minValue в цикле.
+
+                    В любом случае минимальный элемент будет найден.
+
+                    Этот алгоритм не будет работать на пустом массиве. Чтобы алгоритм работал, нам нужен, как минимум, один элемент, чтобы обозначить его как минимальный до начала работы цикла.
+                </p>
+            </section>
+            <section class="example__solution">
+                <code class="example__code">
+                    let usersByDay = [4, 2, 1, 3];
+                    console.log(usersByDay);
+
+                    let currentIndex = 0;
+                    let minValue = usersByDay[currentIndex];
+
+                    for (let j = currentIndex + 1; j <= usersByDay.length - 1; j++) {
+                    if (usersByDay[j] < minValue) {
+                    minValue = usersByDay[j];
+                    console.log('Новый минимальный элемент: ' + minValue);
+                    }
+                    }
+
+                    console.log('Минимальный элемент: ' + minValue);
+                </code>
+            </section>
+        </div>
+        <section class="terminal">
+            <h4 class="terminal__window">terminal</h4>
+            <p class="terminal__result">
+                [4, 2, 1, 3] (Array)
+                Новый минимальный элемент: 2 (String)
+                Новый минимальный элемент: 1 (String)
+                Минимальный элемент: 1 (String)
+                undefined (undefined)
+            </p>
+        </section>
+
+
     <!--<h3 class="example__title"></h3>
         <div class="example">
             <section class="example__description">
@@ -396,6 +458,82 @@
             <br>--[1, 4, 2, 3] (Array)
             <br>--undefined (undefined) </p>
     </section>
+    <h3 class="example__title">Завершаем сортировку</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Завершаем сортировку
+
+                Программа для сортировки массива из четырёх элементов готова. Да, она негибкая, и её придётся переписывать для массивов с другим количеством элементов. Но это нестрашно, ведь вы уже умеете делать рефакторинг.
+
+                В текущей реализации много повторяющегося кода, в котором меняется только значение переменной currentIndex. Как сделать структуру программы лучше?
+
+                Можно взять кусок кода с циклом, который ищет и подставляет на указанное место минимальное значение, и обернуть его в другой цикл. И в этом верхнем, «родительском», цикле наращивать переменную currentIndex.
+
+                Да. Циклы можно вкладывать друг в друга.
+
+                Учтите, что currentIndex должна изменяться не от нуля до длины массива, а от нуля до длины массива, уменьшенной на единицу. Вспомните прошлое задание, в котором мы завершили сортировку для массива, дойдя до предпоследнего элемента (ведь последний элемент автоматически оказался максимальным).
+
+                Условие выхода из верхнего цикла давайте писать по аналогии с условием выхода из вложенного цикла:
+
+                // Цикл до предпоследнего элемента
+                currentIndex <= usersByDay.length - 2
+
+
+                // Цикл до последнего элемента
+                j <= usersByDay.length - 1
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let usersByDay = [4, 2, 1, 3];
+                console.log(usersByDay);
+
+                // Начните цикл здесь
+                // Сортировка с первого элемента
+                for (let currentIndex = 0; currentIndex <= usersByDay.length - 2; currentIndex++) {
+                let minValue = usersByDay[currentIndex];
+
+                for (let j = currentIndex + 1; j <= usersByDay.length - 1; j++) {
+                if (usersByDay[j] < minValue) {
+                minValue = usersByDay[j];
+                let swap = usersByDay[currentIndex];
+                usersByDay[currentIndex] = minValue;
+                usersByDay[j] = swap;
+                console.log('Меняю местами ' + swap + ' и ' + minValue);
+                console.log('Массив сейчас: ' + usersByDay);
+                }
+                }
+
+                console.log('На позиции ' + currentIndex + ' находится минимальный элемент ' + minValue);
+                // Завершите цикл здесь
+                }
+                console.log(usersByDay);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            [4, 2, 1, 3] (Array)
+            Меняю местами 4 и 2 (String)
+            Массив сейчас: 2,4,1,3 (String)
+            Меняю местами 2 и 1 (String)
+            Массив сейчас: 1,4,2,3 (String)
+            На позиции 0 находится минимальный элемент 1 (String)
+            Меняю местами 4 и 2 (String)
+            Массив сейчас: 1,2,4,3 (String)
+            На позиции 1 находится минимальный элемент 2 (String)
+            Меняю местами 4 и 3 (String)
+            Массив сейчас: 1,2,3,4 (String)
+            На позиции 2 находится минимальный элемент 3 (String)
+            [1, 2, 3, 4] (Array)
+            undefined (undefined)
+        </p>
+    </section>-->
+
+
 </main>
 <footer>
     <div class="pagination">
