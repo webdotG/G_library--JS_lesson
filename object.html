@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/button-back-to.css">
+</head>
+<body>
+<header>
+    <a class="button-back-to" href="index.html">
+        <svg class="button-back-to__img" fill="#000000" height="14px" width="14px" id="back-arrow"
+             viewBox="0 0 219.151 219.151">
+            <g>
+                <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+            </g>
+        </svg>
+        к оглавлению</a>
+    <h1 class="lesson-topic">обьекты</h1>
+</header>
+<main>
+    <h3 class="example__title">Сыграем?</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Почему бы не написать что-то для себя, например, игру в кости?
+
+                Принцип такой — игроки по очереди бросают две игральные кости. Результат броска — очки участника.
+                Побеждает тот, кто набрал большее количество очков. Для интриги у каждого игрока будет три попытки.
+
+                Будем писать программу постепенно и начнём с того, что создадим функцию runGame, где в будущем будет
+                запускаться игра (броски костей и накопление очков).
+
+                Для броска игральных костей воспользуемся функцией keks.throwDice(min, max), которая генерирует
+                случайные числа в заданном промежутке, включая минимальное и максимальное значение. Эта функция
+                существует только в тренажёре, в самом JavaScript такой функции нет, но есть другие, которые делают
+                похожие действия. О них мы поговорим позже, в других тренажёрах. А пока будем использовать
+                keks.throwDice(min, max). Какие значения будут минимальными и максимальными?
+
+                Если бросать одну кость, то можно выбросить число от 1 до 6, ведь у кости шесть граней. А если бросать
+                две кости, то получится число от 2 до 12.
+
+                Ясно, передаём в функцию аргументы 2 и 12? Нет, сделаем лучше! Привяжем аргументы к количеству костей:
+                если кость одна, то значения аргументов будут одни, если кости три, то другие.
+
+                Худший результат в игре получается, когда на всех костях выпала единица, а лучший, если выпали все
+                шестёрки. Получается, что минимальное значение равно количеству костей, а максимальное — 6 * количество
+                костей.
+
+                Осталось объявить переменную, которая будет хранить количество костей и использовать её для вычисления
+                аргументов функции runGame.
+
+                Бросим кости и убедимся, что функция работает.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
+    <h3 class="example__title">попытка номер раз</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                У нас есть два игрока, готовых бросать кости. Дадим им возможность совершить первый бросок!
+
+                Мы уже передали переменные firstCatName, firstCatPoints, secondCatName, secondCatPoints в функцию
+                runGame. Используем их, чтобы увеличивать игровые очки котов на результат броска и выводить новое
+                значение в консоль, указывая, какому именно игроку принадлежит результат.
+
+                Увеличивать игровые очки будем с помощью оператора сокращённого сложения +=, он знаком вам ещё с части
+                по циклам
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCatName = 'Кекс';
+                let firstCatPoints = 0;
+
+                let secondCatName = 'Рудольф';
+                let secondCatPoints = 0;
+
+                let runGame = function (quantity, firstPlayerName, firstPlayerPoints, secondPlayerName,
+                secondPlayerPoints) {
+                firstPlayerPoints += keks.throwDice(quantity, quantity * 6);
+                secondPlayerPoints += keks.throwDice(quantity, quantity * 6);
+                console.log(firstPlayerName + ' выбросил ' + firstPlayerPoints);
+                console.log(secondPlayerName + ' выбросил ' + secondPlayerPoints);
+                };
+
+                runGame(diceNumber, firstCatName, firstCatPoints, secondCatName, secondCatPoints);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 2 (String)
+            Рудольф выбросил 6 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Привет, объект!</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Каждый игрок бросает кости и получает игровые очки, всё работает, но обратите внимание на количество
+                параметров в функции runGame. Что будет, если игроков станет три, четыре, пять, десять? А если
+                характеристик каждого игрока станет больше? Ответ очевиден: функция с сорока двумя параметрами. Но этим
+                путём мы не пойдём.
+
+                У каждого кота есть набор показателей: имя и очки. Есть ли более удобный способ хранения значений,
+                относящихся к одной сущности? Есть, это объекты.
+
+                Объект — тип данных, который хранит в себе информацию в виде пар «ключ-значение». Если массив —
+                нумерованный список, где каждый элемент имеет свой порядковый номер, то объект — список, в котором
+                каждый элемент сопоставлен со своим ключом и порядок совсем неважен. Рассмотрим объекты на примере.
+                Опишем объект кота.
+
+                Создаём объект. В первую очередь объект надо создать. Для этого используют уже знакомые вам фигурные
+                скобки { }. Дадим объекту имя, оно задаётся точно так же, как и имя любой переменной.
+
+                // Создаём объект с именем cat
+                let cat = {};
+
+                Добавляем свойства. Пары «ключ-значение», которые содержит в себе объект, называются свойствами или
+                атрибутами. Выглядят они так:
+
+                let cat = {
+                // Добавляем новое свойство, где name — ключ, 'Кекс' — значение
+                name: 'Кекс',
+                // Новое свойство. Ключ — age, значение — 5
+                age: 5
+                };
+
+                Свойства называются по имени ключа, то есть можно сказать, что у объекта кота есть свойство для хранения
+                имени, где ключ name, а значение 'Кекс', или что у объекта кота есть свойство name со значением 'Кекс'.
+
+                Ключи в объекте следует делать уникальными. Если в одном объекте несколько одинаковых ключей, то
+                используется значение последнего.
+
+                Несколько правил синтаксиса:
+
+                Ключ обособляется от значения двоеточием.
+                Пары «ключ-значение» отделяются друг от друга запятыми.
+                Значениями могут быть данные любого типа (число, строка, массив и так далее).
+
+                Давайте вместо набора переменных создадим объекты игроков. У каждого игрока будет свойство с именем и
+                игровыми очками.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCat = {name: 'Кекс', points: 0};
+                let secondCat = {name: 'Рудольф', points: 0};
+
+                let firstCatName = 'Кекс';
+                let firstCatPoints = 0;
+
+                let secondCatName = 'Рудольф';
+                let secondCatPoints = 0;
+
+                let runGame = function (quantity, firstPlayerName, firstPlayerPoints, secondPlayerName,
+                secondPlayerPoints) {
+                firstPlayerPoints += keks.throwDice(quantity, quantity * 6);
+                secondPlayerPoints += keks.throwDice(quantity, quantity * 6);
+                console.log(firstPlayerName + ' выбросил ' + firstPlayerPoints);
+                console.log(secondPlayerName + ' выбросил ' + secondPlayerPoints);
+                };
+
+                runGame(diceNumber, firstCatName, firstCatPoints, secondCatName, secondCatPoints);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 4 (String)
+            Рудольф выбросил 7 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Читаем из объекта</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы создали объекты игроков, а что с ними делать дальше? Конечно, их надо передать в функцию runGame
+                вместо переменных, которые содержали имена и очки. Но как их использовать внутри функции?
+
+                К свойствам объекта можно обращаться и получать их значения. Для доступа к отдельному свойству есть два
+                способа, один мы рассмотрим прямо сейчас, а со вторым познакомимся чуть позже.
+
+                Чтобы получить значение свойства, к нему надо обратиться через точку объект.ключ. Такая запись
+                называется точечной нотацией и возвращает значение свойства объекта, если такое свойство есть. В
+                противном случае вы получите undefined, то есть ничего. На практике это выглядит так:
+
+                let cat = {
+                name: 'Кекс',
+                age: 5
+                };
+                console.log(cat.name); // Выведет в консоль: Кекс
+                console.log(cat.age); // Выведет в консоль: 5
+                console.log(cat.color); // Выведет: undefined. Такого ключа в объекте нет
+
+                Заменим в параметрах функции runGame переменные на объекты игроков, с учётом этого заменим обращение к
+                параметрам в теле функции.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+
+                let runGame = function (quantity, firstPlayer, secondPlayer) {
+                firstPlayer.points += keks.throwDice(quantity, quantity * 6);
+                secondPlayer.points += keks.throwDice(quantity, quantity * 6);
+                console.log(firstPlayer.name + ' выбросил ' + firstPlayer.points);
+                console.log(secondPlayer.name + ' выбросил ' + secondPlayer.points);
+                };
+
+                runGame(diceNumber, firstCat, secondCat);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 8 (String)
+            Рудольф выбросил 7 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">По порядку рассчитайсь!</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                С помощью объектов мы удобно описали игроков и теперь используем эти данные в функции. Параметров стало
+                меньше, но снова возникает вопрос о росте количества участников игры. Что делать, если их станет десять?
+                Создавать ещё объекты? Да! Но есть два минуса:
+
+                Число параметров будет расти вместе с числом игроков.
+                Код в теле функции будет раздуваться, ведь для каждого игрока есть строчка с увеличением очков и выводом
+                результатов в консоль. Чем больше игроков, тем больше кода будет в функции.
+
+                Было бы здорово написать код функции так, чтобы она работала для любого количества игроков. Есть ли
+                такая структура, которая может хранить в себе много данных и которую удобно обрабатывать? Да! Массивы! И
+                вы с ними уже знакомы!
+
+                Вот краткое напоминание на всякий случай: массив — список элементов. У каждого из них есть порядковый
+                номер. Массивы и чтение из них выглядят так:
+
+                // Массив чисел
+                let array = [10, 20, 30, 40, 50];
+
+                // Читаем элементы из массива по индексу (порядковому номеру)
+                console.log(array[0]); // Выведет: 10
+                console.log(array[3]); // Выведет: 40
+
+                Если вы совсем забыли, что такое массивы и как они работают, пройдите часть «Массивы».
+
+                Вернёмся к нашей задаче и введём массив с объектами игроков. Будем передавать в функцию именно его.
+                Тогда мы сможем перебирать массив в цикле и для каждого игрока делать одно и то же: бросать кубики,
+                записывать результат и показывать его.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (quantity, players) {
+                for (let i = 0; i < players.length; i++) {
+                console.log(players[i]);
+                }
+                };
+
+                runGame(diceNumber, cats);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            {name: "Кекс", points: 0} (Object)
+            {name: "Рудольф", points: 0} (Object)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Переопределяем свойства объекта </h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы убедились, что цикл внутри функции работает и в консоль выводится текущий элемент массива игроков.
+                Что дальше?
+
+                После каждого броска мы должны увеличивать игровые очки на результат этого броска. Получается запись
+                вида player.points += результат броска. Как это работает?
+
+                Переопределение свойств.
+
+                Свойства объектов можно не только читать, но и переопределять, как и обычные переменные. А ещё в объект
+                можно добавлять новые свойства уже после того, как он был создан. Вернёмся к объекту кота.
+
+                let cat = {
+                name: 'Кекс',
+                age: 5
+                };
+
+                cat.age++; // Увеличили возраст кота на 1
+                console.log(cat.age) // Выведет: 6
+
+                cat.name = 'Рокки'; // Заменили снаружи значение свойства name
+                console.log(cat.name); // Выведет: Рокки
+                cat.color = 'рыжий'; // Добавили в объект новое свойство
+                console.log(cat.color); // Выведет: рыжий
+
+                Внутри цикла будем вызывать функцию броска throwDice, записывать результат в переменную и увеличивать на
+                это значение игровые очки текущего игрока. Чтобы удобней было отследить события в игре, будем выводить
+                результат броска каждого игрока в консоль.
+
+                Как вы уже знаете, при обращении массив[индекс] мы получаем элемент массива. В нашем случае это объект
+                игрока, из которого можно читать, как из любого другого объекта через точку. Поэтому запись в теле
+                нашего цикла массив[индекс].ключ то же самое, что запись объект.ключ при работе с объектом напрямую.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (quantity, players) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(quantity, quantity * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                };
+
+                runGame(diceNumber, cats);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 9 (String)
+            Рудольф выбросил 5 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Передаём объект по ссылке</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Перед тем, как мы продолжим писать игру в кости, рассмотрим одну важную особенность объектов на
+                практике.
+
+                let firstCat = {
+                name: 'Кекс',
+                age: 5
+                };
+
+                let secondCat = firstCat;
+                console.log(secondCat); // Выведет: {name:"Кекс", age:5}
+
+                firstCat.name = 'Снежок';
+                console.log(secondCat); // Выведет: {name:"Снежок", age:5}
+
+                Мы же не трогали второй объект secondCat, но он изменился вместе с первым объектом firstCat. Почему так?
+                Это вообще законно?
+
+                В JavaScript вполне. Объект здесь всегда один, в памяти не создаётся новое место под копию объекта.
+                Каждая переменная содержит не новую отдельную сущность, а ссылку на один-единственный объект. Поэтому
+                когда мы меняем что-то в объекте через одну из переменных, в которой содержится ссылка на него,
+                изменения видны во всех других переменных, будь их хоть двадцать или сорок. Это важная особенность
+                объектов, которую надо запомнить. Она так и называется — передача объектов по ссылке.
+
+                В нашей программе происходит то же самое. Мы создаём массив cats с объектами игроков и передаём его в
+                функцию runGame. Внутри функции мы используем этот массив под другим именем, players, и меняем
+                хранящиеся в нём объекты. Если после окончания работы функции вывести cats в консоль, то окажется, что
+                его содержимое поменялось, хотя мы ничего не возвращали из функции и вроде бы работали с совсем другим
+                массивом.
+
+                Несмотря на то, что такое поведение объектов — известный факт, работа программы может стать неочевидной,
+                если мы захотим передать изменённый массив ещё куда-то, ведь мы меняем массив неявно по ходу работы
+                цикла. Код нужно писать максимально просто и понятно для себя и других разработчиков. Поэтому мы будем
+                возвращать изменённый массив players из функции и записывать его в массив cats, явно обновляя его.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let diceNumber = 2;
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (quantity, players) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(quantity, quantity * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                return players;
+                };
+                console.log(cats);
+                cats = runGame(diceNumber, cats);
+                console.log(cats);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            [{name: "Кекс", points: 0}, {name: "Рудольф", points: 0}] (Array)
+            Кекс выбросил 3 (String)
+            Рудольф выбросил 5 (String)
+            [{name: "Кекс", points: 3}, {name: "Рудольф", points: 5}] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Моя игра </h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Наши игроки бросают кости, получают игровые очки, вроде всё здорово, но чего-то внутри игрового цикла не
+                хватает. Чего же?
+
+                Сейчас каждый кот бросает кости один раз, а в нашей игре игрок имеет три попытки для броска. Пора
+                записать это правило в виде кода.
+
+                Для начала нам нужно добавить переменную, которая будет содержать количество попыток игроков. Или не
+                переменную?
+
+                В игре уже есть переменная, которая хранит количество игральных костей. Вместе с переменной количества
+                попыток они образуют игровые правила. Поэтому создадим единую сущность с правилами игры, объект
+                gameRuleset.
+
+                Перед дополнением игрового цикла придётся поправить параметры, аргументы и код в теле функции runGame с
+                учётом нового объекта с правилами игры.
+
+                Скорей за дело!
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                return players;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result"> Кекс выбросил 7 (String)
+            Рудольф выбросил 2 (String)
+            [{name: "Кекс", points: 7}, {name: "Рудольф", points: 2}] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Раздаём попытки</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы создали объект с правилами игры и теперь можем добавить каждому игроку по три попытки броска. В этом
+                нам поможет цикл.
+
+                Введём счётчик, чтобы следить за количеством попыток и выходить из цикла, когда число будет равно 3.
+                Назовём счётчик currentAttempt и начнём отсчёт с 1, ведь в игре в кости нет нулевой попытки.
+
+                Обернём в новый цикл всю логику из тела функции runGame и коты начнут бросать кости по три раза.
+                Получится цикл в цикле. Если поменять число в gameRuleset.maxAttempts, программа всё равно будет
+                работать корректно, бросков будет столько, сколько вы укажете.
+
+                Проверьте сами!
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                console.log('попытка :' + ruleset.maxAttempts)
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                } console.log ( ruleset.maxAttempts + ': цикл завершён')
+                }
+                return players;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            попытка :3 (String)
+            Кекс выбросил 12 (String)
+            Рудольф выбросил 11 (String)
+            3: цикл завершён (String)
+            попытка :3 (String)
+            Кекс выбросил 24 (String)
+            Рудольф выбросил 14 (String)
+            3: цикл завершён (String)
+            попытка :3 (String)
+            Кекс выбросил 36 (String)
+            Рудольф выбросил 19 (String)
+            3: цикл завершён (String)
+            [{name: "Кекс", points: 36}, {name: "Рудольф", points: 19}] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Кому отдать победу?</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы сделали самое сложное — разложили игру на составляющие и написали игровой цикл!
+
+                Пока мы можем определить победителя игры, посмотрев на список игровых очков в консоли. Сделаем так,
+                чтобы программа сама выявляла чемпиона. Будем писать код в несколько этапов, проверяя работу программы
+                на каждом шагу.
+
+                Создадим функцию getWinners, которая будет получать массив игроков, обрабатывать его и определять
+                победителей.
+
+                Задача нахождения чемпиона похожа на поиск максимального элемента в массиве: нам нужно пройтись по
+                массиву игроков и найти того, кто набрал наибольшее количество очков. Тут есть сложность: победителей
+                может оказаться больше одного, ведь по ходу игры несколько котов могут набрать одинаковое количество
+                очков. Как быть в этом случае?
+
+                Оптимизируем алгоритм поиска максимального элемента в массиве так, чтобы учитывались все игроки с
+                наибольшим количеством очков. Для этого мы заведём массив победителей. Чаще всего этот массив будет
+                состоять из одного элемента, но если в игре окажется несколько чемпионов, мы никого не обидим и запишем
+                всех в ряды победителей.
+
+                Для начала введём пустой массив, вернём его из getWinners и проверим, что всё работает.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                return winners;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+
+                let tops = getWinners(cats);
+                console.log(tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 12 (String)
+            Рудольф выбросил 4 (String)
+            Кекс выбросил 16 (String)
+            Рудольф выбросил 16 (String)
+            Кекс выбросил 23 (String)
+            Рудольф выбросил 27 (String)
+            [{name: "Кекс", points: 23}, {name: "Рудольф", points: 27}] (Array)
+            [] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Огласите весь список, пожалуйста</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Новая функция работает. Начнём описывать логику выявления победителя.
+
+                В функцию getWinners мы передаём массив игроков, которые уже использовали попытки для бросков и имеют
+                какое-то количество игровых очков. В первую очередь будем перебирать этот массив и выводить в консоль
+                текущий элемент. Снова проверим, что всё работает и только потом будем писать код дальше. Программа
+                становится всё больше и сложнее, поэтому проверять работоспособность кода на каждом шаге очень полезно,
+                так мы минимизируем ошибки в игре.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                console.log(currentPlayer);
+                }
+
+                return winners;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 2 (String)
+            Рудольф выбросил 8 (String)
+            Кекс выбросил 10 (String)
+            Рудольф выбросил 15 (String)
+            Кекс выбросил 18 (String)
+            Рудольф выбросил 19 (String)
+            [{name: "Кекс", points: 18}, {name: "Рудольф", points: 19}] (Array)
+            {name: "Кекс", points: 18} (Object)
+            {name: "Рудольф", points: 19} (Object)
+            [] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Ищем результативного кота</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Теперь, когда мы убедились, что цикл работает корректно, начнём искать победителя, то есть игрока с
+                максимальным количеством очков.
+
+                В первую очередь нужно выбрать игрока, с которым мы будем сравнивать результаты остальных котов. Так как
+                мы храним игроков в массиве, логично и удобно для начала назначить первого участника, как самого
+                результативного.
+
+                Будем перебирать элементы массива в цикле и сравнивать количество очков с первым игроком. Если у
+                какого-то игрока результат лучше, назначим его чемпионом и продолжим сравнение уже с этим игроком. Чтобы
+                отслеживать изменения победителей, будем выводить максимальный результат в консоль.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                let max = players[0];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                if (currentPlayer.points > max.points) {
+                max = currentPlayer;
+                console.log('Новый рекордсмен: ' + currentPlayer.points);
+                }
+                }
+
+                return winners;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 6 (String)
+            Рудольф выбросил 2 (String)
+            Кекс выбросил 13 (String)
+            Рудольф выбросил 11 (String)
+            Кекс выбросил 20 (String)
+            Рудольф выбросил 17 (String)
+            [{name: "Кекс", points: 20}, {name: "Рудольф", points: 17}] (Array)
+            [] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Никому не спрятаться</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы научились находить победителей, а теперь начнём записывать их в массив winners. При переборе массива
+                игроков возможны две интересные ситуации.
+
+                В первой мы встречаем игрока, у которого очков больше, чем у текущего чемпиона. Такой случай мы уже
+                умеем обрабатывать. Осталось правильно внести данные в массив победителей.
+
+                Рекордсменов мы находим по одному, поэтому и в массиве победителей игрок должен оказаться в гордом
+                одиночестве. Удаляем бывших рекордсменов из массива и записываем туда нового потенциального чемпиона.
+                Легче всего это сделать, полностью перезаписав массив:
+
+                // Записываем в winners массив из одного элемента, max
+                winners = [max];
+
+                Во второй ситуации мы встречаем игрока с таким же количеством очков, как у текущего претендента на
+                победу. Этот случай мы пока не описали. Как понять, что мы встретили равного сильнейшему? Например, вот
+                так:
+
+                Если у текущего игрока очков больше, чем у чемпиона,
+                то делаем его новым победителем.
+                ИначеЕсли у текущего игрока очков столько же, сколько у чемпиона,
+                то добавляем его в массив победителей.
+
+                То есть мы можем использовать вложенное условие внутри альтернативной ветки проверки на чемпионство.
+
+                Чтобы добавить несколько победителей в массив, удобнее всего использовать метод push. Этот метод
+                добавляет переданные ему элементы в конец указанного массива. Например:
+
+                let purchases = ['молоко', 'кефир'];
+
+                purchases.push('колбаса', 'конфеты', 'мармелад');
+                console.log(purchases);
+                // Выведет: ["молоко","кефир","колбаса","конфеты","мармелад"]
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                let max = players[0];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                if (currentPlayer.points > max.points) {
+                max = currentPlayer;
+                winners = [max];
+                } else {
+                if (currentPlayer.points === max.points) {
+                winners.push(currentPlayer);
+                }
+                }
+                }
+
+                return winners;
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 12 (String)
+            Рудольф выбросил 7 (String)
+            Кекс выбросил 21 (String)
+            Рудольф выбросил 17 (String)
+            Кекс выбросил 26 (String)
+            Рудольф выбросил 27 (String)
+            [{name: "Кекс", points: 26}, {name: "Рудольф", points: 27}] (Array)
+            [{name: "Рудольф", points: 27}] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Большая редкость</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы написали ещё одну функцию и теперь программа умеет определять победителей игры, но пока никуда их не
+                выводит. Напишем ещё немного кода, чтобы имена победителей и их игровые очки выводились в консоль.
+
+                Начнём с того, что создадим функцию printWinners и обработаем редкую ситуацию, когда все игроки
+                выбросили одинаковое количество очков. Чем игроков больше, тем меньше вероятность ничейного результата,
+                но такое может случиться, и мы должны учесть такой поворот событий.
+
+                Как определить, что все коты набрали одинаковое количество очков? Достаточно передать в функцию
+                printWinners массив игроков и массив победителей, проверить длины этих массивов и, если они совпадают,
+                значит, у нас коллективная ничья. Ведь победителей не может быть больше, чем игроков, а если их меньше,
+                значит, выиграли не все.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                let max = players[0];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                if (currentPlayer.points > max.points) {
+                max = currentPlayer;
+                winners = [max];
+                } else {
+                if (currentPlayer.points === max.points) {
+                winners.push(currentPlayer);
+                }
+                }
+                }
+
+                return winners;
+                };
+
+                let printWinners = function (players, winners) {
+                if (players.length === winners.length) {
+                console.log('Все коты как на подбор!');
+                }
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+                printWinners(cats, tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 5 (String)
+            Рудольф выбросил 7 (String)
+            Кекс выбросил 13 (String)
+            Рудольф выбросил 19 (String)
+            Кекс выбросил 17 (String)
+            Рудольф выбросил 26 (String)
+            [{name: "Кекс", points: 17}, {name: "Рудольф", points: 26}] (Array)
+            [{name: "Рудольф", points: 26}] (Array)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Выводим на чистую воду</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы обработали ситуацию с одинаковым результатом у всех игроков. При встрече этого редкого события можно
+                вывести сообщение в консоль и сразу же завершить работу функции. Этот приём позволяет упростить
+                дальнейшие проверки, ведь мы точно знаем, что одно условие уже обрабатывать не нужно.
+
+                Теперь опишем случаи, когда победителей несколько (но не все) или один. Что для этого нужно?
+
+                Если победили не все участники, сообщение будет начинаться одинаково, со слова «Победил». Поэтому
+                создадим переменную, которая будет хранить начало сообщения. И не забудем про пробел после слова.
+                Так как объекты победителей находятся в массиве, мы будем перебирать массив, получать имена игроков и
+                добавлять их с помощью конкатенации строк в сообщение.
+                Добавим в сообщение информацию о количестве игровых очков у победителей. Для этого не нужно перебирать
+                массив, ведь результат у победителей одинаковый. Для простоты возьмём игровые очки первого игрока и
+                добавим их в сообщение.
+                Выведем сообщение в консоль и посмотрим, что получилось.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 2,
+                maxAttempts: 3
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                let max = players[0];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                if (currentPlayer.points > max.points) {
+                max = currentPlayer;
+                winners = [max];
+                } else {
+                if (currentPlayer.points === max.points) {
+                winners.push(currentPlayer);
+                }
+                }
+                }
+
+                return winners;
+                };
+
+                let printWinners = function (players, winners) {
+                if (players.length === winners.length) {
+                console.log('Все коты как на подбор!');
+                return;
+                }
+                let message = 'Победил ';
+                for (let i = 0; i < winners.length; i++) {
+                message += winners[i].name;
+                }
+                message += ' с количеством очков: ' + winners[0].points;
+                console.log(message);
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+                printWinners(cats, tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 12 (String)
+            Рудольф выбросил 2 (String)
+            Кекс выбросил 14 (String)
+            Рудольф выбросил 12 (String)
+            Кекс выбросил 23 (String)
+            Рудольф выбросил 23 (String)
+            [{name: "Кекс", points: 23}, {name: "Рудольф", points: 23}] (Array)
+            [{name: "Кекс", points: 23}, {name: "Рудольф", points: 23}] (Array)
+            Все коты как на подбор! (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Бросайте кости, господа коты!</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Наша игра полностью написана! Коты бросают кости, победитель определяется программно, его имя и победные
+                очки выводятся в консоль.
+
+                Мы переживали, что же случится, если участников станет больше. Давайте проверим! Введём ещё одного кота
+                в игру, вдвоём скучно бросать кости, а втроём уже интересней.
+
+                А потом попробуем поменять правила игры, чтобы проверить, как программа работает в разных ситуациях.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                diceNumber: 1,
+                maxAttempts: 1
+                };
+
+                let firstCat = {
+                name: 'Кекс',
+                points: 0
+                };
+
+                let secondCat = {
+                name: 'Рудольф',
+                points: 0
+                };
+
+                let thirdCat = {
+                name: 'Рокки',
+                points: 0
+                };
+
+                let cats = [firstCat, secondCat, thirdCat];
+
+                let runGame = function (ruleset, players) {
+                for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                for (let i = 0; i < players.length; i++) {
+                let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                players[i].points += throwResult;
+                console.log(players[i].name + ' выбросил ' + players[i].points);
+                }
+                }
+                return players;
+                };
+
+                let getWinners = function (players) {
+                let winners = [];
+                let max = players[0];
+
+                for (let i = 0; i < players.length; i++) {
+                let currentPlayer = players[i];
+                if (currentPlayer.points > max.points) {
+                max = currentPlayer;
+                winners = [max];
+                } else {
+                if (currentPlayer.points === max.points) {
+                winners.push(currentPlayer);
+                }
+                }
+                }
+
+                return winners;
+                };
+
+                let printWinners = function (players, winners) {
+                if (players.length === winners.length) {
+                console.log('Все коты как на подбор!');
+                return;
+                }
+
+                let message = 'Победил ';
+
+                for (let i = 0; i < winners.length; i++) {
+                message += winners[i].name;
+                }
+                message += ' с количеством очков: ' + winners[0].points;
+
+                console.log(message);
+                };
+
+                cats = runGame(gameRuleset, cats);
+                console.log(cats);
+                let tops = getWinners(cats);
+                console.log(tops);
+                printWinners(cats, tops);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            екс выбросил 4 (String)
+            Рудольф выбросил 5 (String)
+            Рокки выбросил 4 (String)
+            [{name: "Кекс", points: 4}, {name: "Рудольф", points: 5}, {name: "Рокки", points: 4}] (Array)
+            [{name: "Рудольф", points: 5}] (Array)
+            Победил Рудольф с количеством очков: 5 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Внесём корректировки</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Кажется, программа работает как надо. Почти.
+
+                Если побеждает один игрок, то мы получаем отличное сообщение вида "Победил Игрок с количеством очков:
+                число".
+
+                Если победителей несколько (и есть проигравшие), то сообщение выглядит хуже: "Победил ИгрокИгрокИгрок с
+                количеством очков: число". Кажется, что-то пошло не так.
+
+                Имена игроков в этом сообщении нужно отделить запятыми и пробелами. И, конечно, если победителей
+                несколько, они не «победил», а «победили». Программы программами, но грамотный русский язык никто не
+                отменял.
+
+                Чтобы привести сообщение с победителями в приемлемый вид, придётся добавить пару небольших проверок в
+                функцию printWinners.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let gameRuleset = {
+                <br>diceNumber: 1,
+                <br>maxAttempts: 1
+                <br>};
+                <br>
+                <br>let firstCat = {
+                <br>name: 'Кекс',
+                <br>points: 0
+                <br>};
+                <br>
+                <br>let secondCat = {
+                <br>name: 'Рудольф',
+                <br>points: 0
+                <br>};
+                <br>
+                <br>let thirdCat = {
+                <br>name: 'Рокки',
+                <br>points: 0
+                <br>};
+                <br>
+                <br>let cats = [firstCat, secondCat, thirdCat];
+                <br>
+                <br>let runGame = function (ruleset, players) {
+                <br>for (let currentAttempt = 1; currentAttempt <= ruleset.maxAttempts; currentAttempt++) {
+                <br>for (let i = 0; i < players.length; i++) {
+                <br>let throwResult = keks.throwDice(ruleset.diceNumber, ruleset.diceNumber * 6);
+                <br>players[i].points += throwResult;
+                <br>console.log(players[i].name + ' выбросил ' + players[i].points);
+                <br>}
+                <br>}
+                <br>return players;
+                <br>};
+                <br>
+                <br>let getWinners = function (players) {
+                <br>let winners = [];
+                <br>let max = players[0];
+                <br>
+                <br>for (let i = 0; i < players.length; i++) {
+                <br>let currentPlayer = players[i];
+                <br>if (currentPlayer.points > max.points) {
+                <br>max = currentPlayer;
+                <br>winners = [max];
+                <br>} else {
+                <br>if (currentPlayer.points === max.points) {
+                <br>winners.push(currentPlayer);
+                <br>}
+                <br>}
+                <br>}
+                <br>
+                <br>return winners;
+                <br>};
+                <br>
+                <br>
+                <br>let printWinners = function (players, winners) {
+                <br>if (players.length === winners.length) {
+                <br>console.log('Все коты как на подбор!');
+                <br>return;
+                <br>}
+                <br>
+                <br>let message = 'Победил ';
+                <br>if (winners.length > 1) {
+                <br>message = 'Победили ';
+                <br>}
+                <br>
+                <br>for (let i = 0; i < winners.length; i++) {
+                <br>if (i >= 1) {
+                <br>message += ', ';
+                <br>}
+                <br>message += winners[i].name;
+                <br>}
+                <br>
+                <br>message += ' с количеством очков: ' + winners[0].points;
+                <br>
+                <br>console.log(message);
+                <br>};
+                <br>
+                <br>cats = runGame(gameRuleset, cats);
+                <br>let tops = getWinners(cats);
+                <br>printWinners(cats, tops);
+                <br>
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Кекс выбросил 1 (String)
+            Рудольф выбросил 2 (String)
+            Рокки выбросил 6 (String)
+            Победил Рокки с количеством очков: 6 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Девятая программа: «Золотой мяч»</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Кекс уважает футбол, но смотреть игры ему лень некогда. Но это не страшно, ведь коту достаточно знать
+                имена лучших бомбардиров и их результативность, чтобы поставить на игрока поддержать беседу в нужный
+                момент.
+
+                Пока вы писали игру, на почту пришло письмо от Кекса с пометкой «Надо было ещё вчера».
+
+                Мяу! Мне нужна программа, которая подсчитает полезность и результативность игроков на основе их
+                статистики. Оформи код в виде функции getStatistics с одним параметром — массивом игроков.
+
+                Каждый футболист в этом массиве описывается объектом с тремя полями: имя (свойство name), забитые голы
+                (свойство goals) и голевые пасы (свойство passes).
+
+                Функция должна возвращать этот же массив, в котором каждому игроку добавлены ещё два поля: коэффициент
+                полезности по Кексу® (свойство coefficient) и результативность (свойство percent).
+
+                Коэффициент полезности считается так: умножаем голы игрока на 2 (потому что я считаю, что голы важнее
+                всего) и прибавляем к этому значению все голевые пасы футболиста.
+                Результативность (процент забитых мячей футболиста от результата всей команды) считаем так: находим
+                сумму голов всех игроков и выясняем, сколько процентов от этого числа забил каждый футболист. Округляй
+                значение с помощью Math.round.
+
+                Рассчитываем, какой процент составляет число:
+
+                // Общее значение, то есть 100%
+                1200
+                // Сколько процентов составляет 225 от 1200
+                (225 * 100) / 1200 = 18.75
+                // После округления с помощью Math.round
+                19
+
+                /* Техническое задание
+                Мяу! Мне нужна программа, которая подсчитает полезность и результативность игроков на основе их
+                статистики. Оформи код в виде функции getStatistics с одним параметром — массивом игроков.
+                Каждый футболист в этом массиве описывается объектом с тремя полями: имя (свойство name), забитые голы
+                (свойство goals) и голевые пасы (свойство passes).
+                Функция должна возвращать этот же массив, в котором каждому игроку добавлены ещё два поля: коэффициент
+                полезности по Кексу® (свойство coefficient) и результативность (свойство percent).
+                Коэффициент полезности считается так: умножаем голы игрока на 2 (потому что я считаю, что голы важнее
+                всего) и прибавляем к этому значению все голевые пасы футболиста.
+                ------------------------------ ВОТ ТУТ Я ЗАСТРЯЛ--------------------------
+                Результативность (процент забитых мячей футболиста от результата всей команды) считаем так: находим
+                сумму голов всех игроков и выясняем, сколько процентов от этого числа забил каждый футболист. Округляй
+                значение с помощью Math.round.
+                */
+                Предполагается что есть пустой массив players значениями которого будут обьекты.
+                В ходе выполнения функции каждому обьекту будут добавлены новые значения полезности players.coefficent и
+                результативности players.percent
+                Для рассчёта .coefficent надо пройтись по каждому элементу массива players[i] и рассчитать:
+                .coefficent = .goals*2 + .passes
+                Для рассчёта полезности .percent надо найти общуюю сумму голов всех игроков allGoals =+ players[i].goals
+                и поделить общую сумму allGoals на голлы конкретного игрока players[i].goals
+                percent = allGoals =+ players[i].goals
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+                let getStatistics = function (players) {
+
+                let allGoals = players.reduce((sumElements, arrayElement) => sumElements + arrayElement.goals, 0 );
+
+                for ( let i = 0; i < players.length; i ++ ) {
+                players[i].coefficient = players[i].goals * 2 + players[i].passes
+                players[i].percent = Math.round( (players[i].goals * 100) / allGoals )
+                }
+                return players
+                };
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Первый тест. Исходное значение:
+
+            [{"name":"Васька","goals":5,"passes":5},{"name":"Байт","goals":12,"passes":2},{"name":"Снежок","goals":2,"passes":7}]
+
+            Ожидаю результат:
+
+            [{"name":"Васька","goals":5,"passes":5,"coefficient":15,"percent":26},{"name":"Байт","goals":12,"passes":2,"coefficient":26,"percent":63},{"name":"Снежок","goals":2,"passes":7,"coefficient":11,"percent":11}]
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Собери сам!</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мяу!
+
+                Хватит бездельничать, пора за работу!
+
+                У нас новый проект, надо написать компьютерный магазин. Заказчик серьёзный, поэтому всё должно быть по
+                уму. Вот небольшое ТЗ:
+
+                Пользователь выбирает компьютер, а программа выводит результат заказа.
+                В сообщении должны быть технические характеристики и итоговая цена товара.
+                Есть базовая цена любого компьютера, а конечная сумма зависит от каждого технического показателя
+                устройства.
+
+                Жду результата! Не подведи!
+
+                Как и прежде, разберём задачу, чтобы понять, из чего будет состоять программа.
+
+                Очевидно, что без функции тут не обойдётся. Будем передавать ей выбранный компьютер и получать итоговую
+                сумму. При расчётах необходимо учесть базовую цену устройства и стоимость каждой характеристики.
+                Например, цены компьютеров с экраном 13 и 15 дюймов будут отличаться. Получается, у каждого устройства
+                есть показатели: базовая цена и технические характеристики (оперативная память, процессор и размер
+                дисплея). Иными словами, несколько свойств, относящихся к одной сущности, компьютеру. Вы уже догадались,
+                где мы будем это хранить? Правильно, в объекте.
+
+                В итоге у нас получится конфигуратор компьютера. В объекте будем хранить компьютер и его характеристики,
+                а сам объект будем хранить в теле функции. Выбирая какое-то устройство, будем вызывать
+                функцию-конфигуратор, которая будет записывать в объект компьютера его характеристики, считать цену и
+                возвращать её наружу.
+
+                Для начала создадим функцию buildComputer, заведём внутри объект computer и проверим, что функция его
+                возвращает.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let buildComputer = function (memory, display, processor) {
+                let computer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory
+                };
+
+                return computer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log(myComputer);
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            {basicPrice: 5000, processor: "i7", display: 13, memory: 8} (Object)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Мой первый метод</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Функция и объект созданы. Идём дальше.
+
+                Нам надо посчитать цену компьютера и вывести итоговое сообщение. Для этого нужно написать функции, и
+                запишем мы их прямо в объект! Так можно делать!
+
+                В объектах могут храниться любые типы данных, в том числе и функции. Такие свойства-функции называются
+                методами объектов. Они вызываются так же, как и любые другие функции, через круглые скобки, а обращаемся
+                мы к методам, как и к свойствам объекта. В итоге вызов метода записывается так: объект.метод().
+
+                Главное в создании метода — придумать подходящее название, описывающее, что делает этот метод. В мире
+                программирования есть устоявшиеся традиции именования. Например, функции, которые что-то возвращают,
+                называются геттерами и начинаются со слова get. Это выглядит так:
+
+                let cat = {
+                name: 'Кекс',
+                color: 'рыжий',
+                age: 5,
+
+                getGreeting: function() {
+                return 'Мяу, привет!';
+                }
+                };
+
+                console.log(cat.getGreeting()); // Выведет: Мяу, привет!
+
+                Раз методы это те же функции, почему мы вообще записываем их в объект, а не используем привычные внешние
+                функции?
+
+                Методы используются для работы с объектами. Они читают свойства, переписывают их и возвращают. Да, можно
+                создать внешнюю функцию, передавать ей объект и обрабатывать внутри этой функции. Но намного удобней
+                держать в объекте всё, что относится именно к этому объекту. Например, мы храним технические
+                характеристики внутри объекта компьютера, нам нужно возвращать строку с данными и высчитывать цену. Эти
+                две задачи связаны именно с объектом компьютера, поэтому мы будем записывать эти функции в объект.
+
+                Создадим простой геттер для объекта компьютера и проверим, всё ли работает, как надо.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let buildComputer = function (memory, display, processor) {
+                let computer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+                getDescription: function () {
+                return 'компьютер';
+                }
+                };
+
+                return computer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription());
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Реализуем методы</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Мы убедились, что метод работает в объекте компьютера. Что дальше?
+
+                Сейчас мы возвращаем просто слово «компьютер». Но метод getDescription должен возвращать описание
+                устройства со всеми его характеристиками, которые хранятся в свойствах объекта computer. Как это
+                сделать? Можно ли изнутри методов объекта обращаться к его свойствам? Можно! Здесь нет никаких
+                сложностей синтаксиса, пишем, как всегда объект.свойство.
+
+                Переопределим метод getDescription. Пусть он возвращает строку с описанием выбранного компьютера. К
+                свойствам, которые хранят технические характеристики устройства будем обращаться через точку изнутри
+                метода.
+
+                Кстати, в объекте может быть много методов, а не один. Поэтому мы заведём ещё один и назовём его
+                getPrice. Как понятно из названия, он будет возвращать цену компьютера.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let buildComputer = function (memory, display, processor) {
+                let computer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+
+                getDescription: function () {
+                return 'компьютер с процессором ' + computer.processor + ', диагональю ' + computer.display + ',
+                оперативной памятью ' + computer.memory;
+                },
+                getPrice: function () {
+                return computer.basicPrice;
+                }
+                };
+
+                return computer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription() + ' стоимостью ' + myComputer.getPrice());
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер с процессором i7, диагональю 13, оперативной памятью 8 стоимостью 5000 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Объект как словарь</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                HTML Academy
+                Предыдущее задание
+                Объекты
+                24/29
+                Вернуться в список заданий
+
+                1. Сыграем?
+                2. Игроки, в студию!
+                3. Моя попытка номер раз
+                4. Привет, объект!
+                5. Читаем из объекта
+                6. По порядку рассчитайсь!
+                7. Переопределяем свойства объекта
+                8. Передаём объект по ссылке
+                9. Моя игра
+                10. Раздаём попытки
+                11. Кому отдать победу?
+                12. Огласите весь список, пожалуйста
+                13. Ищем результативного кота
+                14. Никому не спрятаться
+                15. Большая редкость
+                16. Выводим на чистую воду
+                17. Бросайте кости, господа коты!
+                18. Внесём корректировки
+                19. Конспект «Объекты». Раздел 1
+                20. Девятая программа: «Золотой мяч»
+                21. Собери сам!
+                22. Мой первый метод
+                23. Реализуем методы
+                24. Объект как словарь
+                25. Скобочная нотация
+                26. Не будем вырывать из контекста
+                27. Проверка магазина
+                28. Конспект «Объекты». Раздел 2
+                29. Десятая программа: «Дом, который построил Кекс»
+
+                Следующее задание
+
+                Кирилл ГрантКирилл Грант
+
+                Объект как словарь
+
+                Теперь посчитаем цену компьютера. Она состоит из нескольких слагаемых: стартовой цены и стоимости каждой
+                технической характеристики. Расценки:
+                Процессор 'i5' 5000
+                Процессор 'i7' 10000
+                Дисплей 13 дюймов 5000
+                Дисплей 15 дюймов 10000
+                Оперативная память 8 Гб 3000
+                Оперативная память 16 Гб 7000
+
+                Выходит, нам нужно проверять значения свойств в объекте компьютера и, в зависимости от результата,
+                прибавлять к базовой цене ту или иную сумму. В итоге мы получим цену устройства. Для проверки каждой
+                характеристики отдельно можно использовать конструкцию else if. Тогда код будет выглядеть примерно так:
+
+                let price = computer.basicPrice;
+
+                if (computer.processor === 'i5') {
+                price += 5000;
+                } else if (computer.processor === 'i7') {
+                price += 10000;
+                }
+
+                // И так далее суммируем стоимость остальных компонентов
+
+                Код рабочий, но не кажется ли он слишком большим? Сейчас у нас только три характеристики, из которых
+                складывается цена устройства, а что, если их станет больше?
+
+                В некоторых ситуациях блоки с условиями можно сократить с помощью объектов. Давайте разбираться, как это
+                сделать. Рассмотрим на примере.
+
+                let printFavoriteFood = function (name) {
+                let message = 'Моя любимая еда — ';
+
+                if (name === 'Кекс') {
+                message += 'рыба';
+                } else if (name === 'Рудольф') {
+                message += 'котлета';
+                } else if (name === 'Снежок') {
+                message += 'сметана';
+                }
+
+                return message;
+                };
+
+                console.log(printFavoriteFood('Снежок')); // Выведет: Моя любимая еда — сметана
+
+                Обратите внимание, что каждому коту, а точнее его имени, соответствует определённая еда. При этом
+                порядок котов совсем неважен. Можно ли записать вкусовые предпочтения котов в объект? Давайте попробуем.
+
+                let catsFavoriteFood = {
+                Кекс: 'рыба',
+                Рудольф: 'котлета',
+                Снежок: 'сметана'
+                };
+
+                Можно ли теперь использовать данные в объекте catsFavoriteFood так, чтобы совсем избавиться от условий в
+                теле функции printFavoriteFood? Можно! Перед нами обычный объект со свойствами и их значениями. Значит,
+                мы можем обратиться к свойству объекта и подставить в выражение строку, которая в нём содержится.
+
+                let catsFavoriteFood = {
+                Кекс: 'рыба',
+                Рудольф: 'котлета',
+                Снежок: 'сметана'
+                };
+
+                let printFavoriteFood = function (name) {
+                return 'Моя любимая еда — ' + catsFavoriteFood[name];
+                };
+
+                console.log(printFavoriteFood('Снежок')); // Выведет: Моя любимая еда — сметана
+
+                Код работает, как и прежде, зато насколько сократилась наша программа!
+
+                Мы записали в объект не характеристику вида name: 'Кекс', а соотношение имени кота и лакомства, которое
+                по вкусу именно ему. Такие объекты называют словарями, мапами или ассоциативными массивами. Они очень
+                удобны в использовании и позволяют писать код чище и проще.
+
+                В нашей программе для каждого показателя подходит своя цена, например, для процессора 'i7' это 10000,
+                для дисплея 13 дюймов это 5000. Значит, мы можем сделать словари, которые будут хранить стоимость каждой
+                характеристики, а затем обращаться к свойствам этих объектов, чтобы получить цену.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let processorPrice = {
+                'i5': 5000,
+                'i7': 10000
+                };
+
+                let displayPrice = {
+                13: 5000,
+                15: 10000
+                };
+
+                let memoryPrice = {
+                8: 3000,
+                16: 4000
+                };
+
+                let buildComputer = function (memory, display, processor) {
+                let computer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+
+                getDescription: function () {
+                return 'компьютер с процессором ' + computer.processor + ', диагональю ' + computer.display + ',
+                оперативной памятью ' + computer.memory;
+                },
+
+                getPrice: function () {
+                return computer.basicPrice;
+                }
+                };
+
+                return computer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription() + ' стоимостью ' + myComputer.getPrice());
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер с процессором i7, диагональю 13, оперативной памятью 8 стоимостью 5000 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Скобочная нотация</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Заметили что-то необычное в примере работы со словарём?
+
+                let catsFavoriteFood = {
+                'Кекс': 'рыба',
+                'Рудольф': 'котлета',
+                'Снежок': 'сметана'
+                };
+
+                let printFavoriteFood = function (name) {
+                return 'Моя любимая еда — ' + catsFavoriteFood[name];
+                };
+
+                console.log(printFavoriteFood('Снежок'));
+                // Выведет: Моя любимая еда — сметана
+
+                Раньше мы обращались к свойствам объекта с помощью точки, а в этом примере работаем с объектом как с
+                массивом — читаем свойство с помощью квадратных скобок: catsFavoriteFood[name]. Да, так тоже можно.
+                Способ со скобками называется скобочной нотацией, способ с точкой — точечной нотацией. Программисты
+                такие оригиналы, не правда ли?
+
+                Скобочная нотация намного гибче точечной. Например, вы можете прочитать из объекта свойство, название
+                которого записано в переменную:
+
+                let name = 'Кекс';
+                let catsFavoriteFood = { 'Кекс': 'рыба' };
+
+                console.log(catsFavoriteFood.name); // Выведет: undefined
+
+                console.log(catsFavoriteFood[name]); // Выведет: рыба
+
+                Первое сообщение содержит undefined, потому что у объекта нет свойства name. Второе сообщение содержит
+                искомое значение, потому что программа понимает, что в квадратных скобках переменная. Значение
+                переменной подставится в скобки, а затем будет найдено нужное свойство объекта.
+
+                console.log(catsFavoriteFood[name]);
+                // Незаметно внутри программы превращается в:
+                console.log(catsFavoriteFood['Кекс']);
+
+                И ещё один сюрприз. В качестве ключей в объекте можно использовать любые строки, даже строки с
+                пробелами. С точечной нотацией такие свойства прочитать не получится, а со скобочной — без проблем.
+
+                let cat = { 'favorite food': 'Сметана' };
+
+                // Вызовет ошибку
+                console.log(cat.favorite food);
+
+                // Отработает нормально
+                console.log(cat['favorite food']);
+
+                Кстати, почему мы вынесли словари из функции в самое начало программы? Значения, которые хранятся в этих
+                объектах, не зависят от параметров функции или объекта компьютера. Это правила, относящиеся ко всей
+                программе. Их можно использовать в других функциях и операциях, если это понадобится. Если бы словари
+                находились в теле функции, они бы создавались только в момент вызова этой функции.
+
+                Почему это вообще работает? Объект внутри функции видит объекты, которые объявлены в самом начале
+                программы. Так работают области видимости. Мы разберём эту особенность языка позже, в других тренажёрах.
+
+                Теперь, когда словари созданы, и мы научились с ними работать, можно посчитать цену компьютера одной
+                строкой. Будем использовать метод getPrice. Переопределим его, добавив новые вычисления.
+
+                JavaScript
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let processorPrice = {
+                'i5': 5000,
+                'i7': 10000
+                };
+
+                let displayPrice = {
+                13: 5000,
+                15: 10000
+                };
+
+                let memoryPrice = {
+                8: 3000,
+                16: 4000
+                };
+
+                let buildComputer = function (memory, display, processor) {
+                let computer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+
+                getDescription: function () {
+                return 'компьютер с процессором ' + computer.processor + ', диагональю ' + computer.display + ',
+                оперативной памятью ' + computer.memory;
+                },
+
+                getPrice: function () {
+                return computer.basicPrice + processorPrice[computer.processor] + displayPrice[computer.display] +
+                memoryPrice[computer.memory];
+                }
+                };
+
+                return computer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription() + ' стоимостью ' + myComputer.getPrice());
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер с процессором i7, диагональю 13, оперативной памятью 8 стоимостью 23000 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Не будем вырывать из контекста</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Наша программа готова! Вся необходимая функциональность написана! Осталось обсудить ещё один вопрос.
+
+                Внутри методов мы обращаемся к свойствам объекта компьютера computer.свойство. А что, если в будущем
+                название объекта изменится и количество свойств увеличится? Придётся везде исправлять computer на что-то
+                новое. Лень — одно из главных качеств разработчика, переписывать названия совсем не хочется. Хорошо, что
+                есть ключевое слово this. Им-то мы и воспользуемся.
+
+                this недаром называется именно так. Если в речи такое местоимение указывает на определённый предмет, то
+                в JavaScript ключевое слово this указывает на конкретный объект, а именно на тот объект, на котором была
+                вызвана функция (метод).
+
+                Использовать this просто, достаточно заменить название объекта на ключевое слово в обращении к свойству.
+                Вместо объект.свойство используем this.свойство.
+
+                let cat = {
+                name: 'Рудольф',
+
+                introduce: function () {
+                console.log('Мяу! Я кот ' + this.name + '!');
+                }
+                };
+
+                cat.introduce(); // Выведет: Мяу! Я кот Рудольф!
+
+                Объект, на который указывает this называется контекстом вызова.
+
+                Важная деталь: пока функция не вызвана, this не содержит никакого значения, контекст появляется только в
+                момент вызова функции.
+
+                Ключевое слово this приносит много пользы разработчикам. О других преимуществах и особенностях this вы
+                узнаете позже, в дальнейших тренажёрах, а пока заменим обращение к свойствам внутри объекта computer.
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let processorPrice = {
+                'i5': 5000,
+                'i7': 10000
+                };
+
+                let displayPrice = {
+                13: 5000,
+                15: 10000
+                };
+
+                let memoryPrice = {
+                8: 3000,
+                16: 4000
+                };
+
+                let buildComputer = function (memory, display, processor) {
+                let customComputer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+
+                getDescription: function () {
+                return 'компьютер с процессором ' + this.processor + ', диагональю ' + this.display + ', оперативной
+                памятью ' + this.memory;
+                },
+
+                getPrice: function () {
+                return this.basicPrice + processorPrice[this.processor] + displayPrice[this.display] +
+                memoryPrice[this.memory];
+                }
+                };
+
+                return customComputer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription() + ' стоимостью ' + myComputer.getPrice());
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер с процессором i7, диагональю 13, оперативной памятью 8 стоимостью 23000 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+    <h3 class="example__title">Проверка магазина</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Интернет-магазин готов! Осталось проверить, как будет работать программа с другим компьютером. Надо
+                убедиться, что независимо от показателей устройства, сообщение с техническими характеристиками будет
+                выводиться корректно, а цена будет высчитываться верно.
+
+                Создадим ещё один компьютер с оперативной памятью 16 Гб, диагональю 15 дюймов и процессором 'i5', узнаем
+                его цену и выведем список характеристик
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let processorPrice = {
+                'i5': 5000,
+                'i7': 10000
+                };
+
+                let displayPrice = {
+                13: 5000,
+                15: 10000
+                };
+
+                let memoryPrice = {
+                8: 3000,
+                16: 4000
+                };
+
+                let buildComputer = function (memory, display, processor) {
+                let customComputer = {
+                basicPrice: 5000,
+                processor: processor,
+                display: display,
+                memory: memory,
+
+                getDescription: function () {
+                return 'компьютер с процессором ' + this.processor + ', диагональю ' + this.display + ', оперативной
+                памятью ' + this.memory;
+                },
+
+                getPrice: function () {
+                return this.basicPrice + processorPrice[this.processor] + displayPrice[this.display] +
+                memoryPrice[this.memory];
+                }
+                };
+
+                return customComputer;
+                };
+
+                let myComputer = buildComputer(8, 13, 'i7');
+                console.log('В корзине ' + myComputer.getDescription() + ' стоимостью ' + myComputer.getPrice());
+
+                let anotherComputer = buildComputer(16, 15, 'i5');
+                console.log('В корзине ' + anotherComputer.getDescription() + ' стоимостью ' +
+                anotherComputer.getPrice());
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            В корзине компьютер с процессором i7, диагональю 13, оперативной памятью 8 стоимостью 23000 (String)
+            В корзине компьютер с процессором i5, диагональю 15, оперативной памятью 16 стоимостью 24000 (String)
+            undefined (undefined)
+        </p>
+    </section>
+
+
+    <h3 class="example__title">Десятая программа: «Дом, который построил Кекс»</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Пока вы работали над интернет-магазином, Кекс решил построить дом. Он начал писать конфигуратор для
+                расчёта площади и стоимости строительства, но утомился. И правда, зачем писать код самому, если есть
+                разработчики?
+
+                Мяу! Допиши за меня конфигуратор. Я создал объект house и задал ему несколько свойств: rooms (количество
+                комнат), floors (этажи), material (материал для стен), coefficient (средняя площадь каждой комнаты).
+
+                Ещё я завёл мапу materialPrice, в которой записал стоимость каждого возможного материала для
+                строительства.
+
+                Добавь в объект два метода: calculateSquare, который будет возвращать площадь дома, и calculatePrice,
+                который будет возвращать стоимость строительства.
+
+                Площадь считай так: умножь количество комнат на коэффициент и число этажей в доме.
+
+                Цена строительства — произведение площади и стоимости материала дома.
+
+                Жду результата! Может, приглашу тебя на новоселье.
+
+                Жмите Заказчик, принимай программу!, чтобы позвать Босса. Он будет менять значения в объекте и выяснять
+                во сколько обойдётся строительство. Удачи!
+
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let materialPrice = {
+                'wood': 1000,
+                'stone': 1500,
+                'brick': 2000,
+                };
+                let house = {
+                rooms: 10,
+                floors: 5,
+                material: 'wood',
+                coefficient: 10.5,
+                calculateSquare : function(){
+                const square = this.rooms * this.coefficient * this.floors;
+                return square
+                },
+                calculatePrice : function(){
+                const price = materialPrice[this.material];
+                const square = this.calculateSquare();
+                const cost = price * square;
+                return cost;
+                }
+                };
+
+                /* Техническое задание
+
+                Мяу! Допиши за меня конфигуратор. Я создал объект house и задал ему несколько свойств: rooms (количество комнат), floors (этажи), material (материал для стен), coefficient (средняя площадь каждой комнаты).
+
+                Ещё я завёл мапу materialPrice, в которой записал стоимость каждого возможного материала для строительства.
+
+                Добавь в объект два метода: calculateSquare, который будет возвращать площадь дома, и calculatePrice, который будет возвращать стоимость строительства.
+
+                Площадь считай так: умножь количество комнат на коэффициент и число этажей в доме.
+
+                Цена строительства — произведение площади и стоимости материала дома.
+
+                */
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Первый тест. Исходное значение:
+
+            {"rooms":1,"floors":1,"material":"stone","coefficient":1}
+
+            Ожидаю результат площадь: 1, стоимость: 1500.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 1, стоимость: 1500 и совпадают с ожидаемыми значениями.
+            Второй тест. Исходное значение:
+
+            {"rooms":6,"floors":8,"material":"brick","coefficient":10}
+
+            Ожидаю результат площадь: 480, стоимость: 960000.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 480, стоимость: 960000 и совпадают с ожидаемыми значениями.
+            Третий тест. Исходное значение:
+
+            {"rooms":3,"floors":6,"material":"wood","coefficient":5.5}
+
+            Ожидаю результат площадь: 99, стоимость: 99000.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 99, стоимость: 99000 и совпадают с ожидаемыми значениями.
+            Задача выполнена
+
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+</main>
+<footer>
+    <div class="pagination">
+        <a class="pagination__btn pagination__btn--previous">
+            <svg class="prev-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
+                <g>
+                    <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+                </g>
+            </svg>
+            предыдущая</a>
+        <a class="pagination__btn pagination__btn--next">следующая
+            <svg class="next-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
+                <g>
+                    <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+                </g>
+            </svg>
+        </a>
+    </div>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>
