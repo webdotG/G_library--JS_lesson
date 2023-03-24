@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>import-export</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/button-back-to.css">
+</head>
+<body>
+<header>
+    <a class="button-back-to" href="index.html">
+        <svg class="button-back-to__img" fill="#000000" height="14px" width="14px" id="back-arrow"
+             viewBox="0 0 219.151 219.151">
+            <g>
+                <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+            </g>
+        </svg>
+        к оглавлению</a>
+    <h1 class="lesson-topic">массив</h1>
+</header>
+<main>
+    <h2 class="program-name">импорт и экспорт модулей</h2>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                В JavaScript можно экспортировать и импортировать let-переменные.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                import {keks} from './keks.js';
+
+                console.log(keks);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            The Cat
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Однако при импорте let-переменная как бы превращается в const-переменную. На самом деле переменная
+                остаётся let-переменной, просто изменить её после импорта нельзя, браузер выкинет ошибку.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                import {keks} from './keks.js';
+
+                keks = 'The Dog';
+
+                console.log(keks);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            Illegal reassignment to import 'keks'
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                А вот изменить let-переменную в исходном модуле после экспорта можно! Причём это приведёт к её изменению
+                в местах импорта.
+
+                Обратите внимание, что, казалось бы, мы изменяем переменную уже после экспорта, но в консоль в main.js
+                всё равно выводится 'The Dog'.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                let keks = 'The Cat';
+
+                export {keks};
+
+                keks = 'The Dog';
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            The Dog
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Это поведение не зависит от того, по месту мы экспортируем переменную или после объявления.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                export let keks = 'The Cat';
+
+                keks = 'The Dog';
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            The Dog
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Поэтому чтобы избежать таких коллизий, всегда экспортируйте только const-переменные. В таком случае при
+                попытке их изменить браузер уведомит вас ошибкой.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                export const keks = 'The Cat';
+
+                keks = 'The Dog';
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            TypeError: invalid assignment to const 'keks'
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Кстати, с экспортом объектных типов данных нужно быть внимательнее даже с const.
+
+                Давайте экспортируем не просто строку, а целый объект.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                export const keks = {
+                name: 'The Cat',
+                };
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            name
+
+            The Cat
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                А после попробуем его изменить… и мы снова в main.js в консоли браузера получаем 'The Dog'.
+
+                Почему так получилось, если мы использовали const? Дело в том, что прежде, чем экспортировать значение,
+                браузер выполнит весь код в модуле. И раз мы после экспорта, но в том же модуле, изменили объект, то
+                сперва запишется новое свойство, и только потом произойдёт экспорт.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                export const keks = {
+                name: 'The Cat',
+                };
+
+                keks.name = 'The Dog';
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+            name
+
+            The Dog
+
+
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                К сожалению, это никак не изменить. Но чтобы всегда помнить об этом поведении, мы рекомендуем
+                экспортировать значения только в конце модуля, и не использовать экспорт «по месту».
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                const keks = {
+                name: 'The Cat',
+                };
+
+                keks.name = 'The Dog';
+
+                export {keks};
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+            name
+
+            The Dog
+
+
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
+</main>
+<footer>
+    <div class="pagination">
+        <a class="pagination__btn pagination__btn--previous">
+            <svg class="prev-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
+                <g>
+                    <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+                </g>
+            </svg>
+            предыдущая</a>
+        <a class="pagination__btn pagination__btn--next">следующая
+            <svg class="next-btn" fill="#000000" height="14px" width="14px" id="back-arrow"
+                 viewBox="0 0 219.151 219.151">
+                <g>
+                    <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008
+		        c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825
+		        c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628
+		        c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z"/>
+                </g>
+            </svg>
+        </a>
+    </div>
+</footer>
+<script src="index.js"></script>
+</body>
+</html>
+</body>
+</html>

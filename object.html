@@ -2239,11 +2239,14 @@
 
                 /* Техническое задание
 
-                Мяу! Допиши за меня конфигуратор. Я создал объект house и задал ему несколько свойств: rooms (количество комнат), floors (этажи), material (материал для стен), coefficient (средняя площадь каждой комнаты).
+                Мяу! Допиши за меня конфигуратор. Я создал объект house и задал ему несколько свойств: rooms (количество
+                комнат), floors (этажи), material (материал для стен), coefficient (средняя площадь каждой комнаты).
 
-                Ещё я завёл мапу materialPrice, в которой записал стоимость каждого возможного материала для строительства.
+                Ещё я завёл мапу materialPrice, в которой записал стоимость каждого возможного материала для
+                строительства.
 
-                Добавь в объект два метода: calculateSquare, который будет возвращать площадь дома, и calculatePrice, который будет возвращать стоимость строительства.
+                Добавь в объект два метода: calculateSquare, который будет возвращать площадь дома, и calculatePrice,
+                который будет возвращать стоимость строительства.
 
                 Площадь считай так: умножь количество комнат на коэффициент и число этажей в доме.
 
@@ -2262,19 +2265,22 @@
             {"rooms":1,"floors":1,"material":"stone","coefficient":1}
 
             Ожидаю результат площадь: 1, стоимость: 1500.
-            Результаты вызовов calculateSquare, calculatePrice равны площадь: 1, стоимость: 1500 и совпадают с ожидаемыми значениями.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 1, стоимость: 1500 и совпадают с
+            ожидаемыми значениями.
             Второй тест. Исходное значение:
 
             {"rooms":6,"floors":8,"material":"brick","coefficient":10}
 
             Ожидаю результат площадь: 480, стоимость: 960000.
-            Результаты вызовов calculateSquare, calculatePrice равны площадь: 480, стоимость: 960000 и совпадают с ожидаемыми значениями.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 480, стоимость: 960000 и совпадают с
+            ожидаемыми значениями.
             Третий тест. Исходное значение:
 
             {"rooms":3,"floors":6,"material":"wood","coefficient":5.5}
 
             Ожидаю результат площадь: 99, стоимость: 99000.
-            Результаты вызовов calculateSquare, calculatePrice равны площадь: 99, стоимость: 99000 и совпадают с ожидаемыми значениями.
+            Результаты вызовов calculateSquare, calculatePrice равны площадь: 99, стоимость: 99000 и совпадают с
+            ожидаемыми значениями.
             Задача выполнена
 
         </p>
@@ -2298,6 +2304,576 @@
         <p class="terminal__result">
         </p>
     </section>
+
+    <h3 class="example__title">Деструктуризация</h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Опишем с помощью объекта животное. Укажем кличку, возраст и вид.
+
+                Попробуем использовать наш объект, например, для вывода предложения на основе данных в консоль.
+
+                В каждом обращении к свойству объекта нам нужно повторять его название animal.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const animal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                console.log(
+                'My name is ' +
+                animal.nickname +
+                '. I\'m ' +
+                animal.age +
+                ' years old. I\'m ' +
+                animal.kind,
+                );
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Какие есть варианты? Например, мы можем записать каждое свойство в переменную. Однако, теперь мы не
+                только повторяем три раза название объекта, ещё и каждое свойство задублировали.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const nickname = myVeryLovelyAnimal.nickname;
+                const age = myVeryLovelyAnimal.age;
+                const kind = myVeryLovelyAnimal.kind;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Выход — деструктуризация. Это особый синтаксис объявления переменных для объектов и массивов.
+
+                Напоминает перевёрнутое объявление: const {} = obj вместо const obj = {}
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const nickname = myVeryLovelyAnimal.nickname;
+                const age = myVeryLovelyAnimal.age;
+                const kind = myVeryLovelyAnimal.kind;
+
+                const {} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                В фигурных скобках нужно перечислить свойства объекта, которые мы хотим объявить как переменные. Начнём
+                с nickname.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const age = myVeryLovelyAnimal.age;
+                const kind = myVeryLovelyAnimal.kind;
+
+                const {nickname} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Затем age.
+                И наконец kind. Мы получили запись, равнозначную предыдущей, но вместо трёх строк объявили три
+                переменных за раз.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const {nickname, age, kind} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Если мы попытаемся таким способом деструктурировать свойство, например sex, которого нет в объекте, то
+                значение такой переменной будет undefined.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const {nickname, age, kind, sex} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+                console.log(sex);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+
+            undefined
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Не обязательно деструктурировать все свойства разом или вообще все свойства. Можно сначала
+                деструктурировать свойства nickname и kind, а потом age.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const {nickname, kind} = myVeryLovelyAnimal;
+                const {age} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Это удобно, если нам нужно часть свойств объявить как const, а часть как let (или var), чтобы, например,
+                изменить (перевести человеческие года в кошачьи)
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const CAT_AGE_IN_HUMAN = 8;
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const {nickname, kind} = myVeryLovelyAnimal;
+                let {age} = myVeryLovelyAnimal;
+
+                age = age * CAT_AGE_IN_HUMAN + ' cat\'s';
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 40 cat's years old. I'm The Cat
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Деструктурировать можно и массив, только скобки в этом случае будут квадратные
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const [first, second] = ['My name is', 'Keks'];
+
+                console.log(first);
+                console.log(second);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is
+
+            Keks
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                А ещё в массиве порядок элементов важен. Поэтому, чтобы деструктурировать только второе свойство, нужно
+                первое оставить пустым.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const [, nickname] = ['My name is', 'Keks'];
+
+                console.log(nickname);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            Keks
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Кстати, строка (и многое другое) тоже может быть представлена в виде массива символов, а значит её тоже
+                можно деструктурировать
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const [firstLetter, secondLetter] = 'My name is Keks';
+
+                console.log(firstLetter, secondLetter);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            M
+
+            y
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                Вспомните 9 шаг, где при деструктуризации несуществующее в объекте свойство sex превращалось в
+                переменную с undefined.
+
+                Чтобы избежать такого поведения, можно использовать деструктуризацию вместе с параметрами по умолчанию.
+
+                Для такого случая мы можем задать значение по умолчанию. Синтаксис тот же, похожий на присвоение.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const myVeryLovelyAnimal = {
+                nickname: 'Keks',
+                age: 5,
+                kind: 'The Cat',
+                };
+
+                const {nickname, age, kind, sex = 'male'} = myVeryLovelyAnimal;
+
+                console.log(
+                'My name is ' +
+                nickname +
+                '. I\'m ' +
+                age +
+                ' years old. I\'m ' +
+                kind,
+                );
+
+                console.log(sex);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+
+
+            My name is Keks. I'm 5 years old. I'm The Cat
+
+            male
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+                С массивами тоже работает.
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+                'use strict';
+
+                const [first, second, third = '!'] = ['My name is', 'Keks'];
+
+                console.log(first, second, third);
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+            My name is
+
+            Keks
+
+            !
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
+    <h3 class="example__title"></h3>
+    <div class="example">
+        <section class="example__description">
+            <p class="example__paragraph">
+            </p>
+        </section>
+        <section class="example__solution">
+            <code class="example__code">
+
+            </code>
+        </section>
+    </div>
+    <section class="terminal">
+        <h4 class="terminal__window">terminal</h4>
+        <p class="terminal__result">
+        </p>
+    </section>
+
 </main>
 <footer>
     <div class="pagination">
