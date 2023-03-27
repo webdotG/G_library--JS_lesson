@@ -24,6 +24,7 @@ form.onsubmit = function (evt) {
     }
     newTask.textContent = input.value;
     list.append(newTask)
+    input.value = '';
 };
 
 
