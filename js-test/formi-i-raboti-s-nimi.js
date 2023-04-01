@@ -30,7 +30,7 @@
         <input type="submit" value="Сохранить">
     </div>
 </form>*/
-<script>
+
     if (window.localStorage) {
     var elements = document.querySelectorAll('[name]');
 
@@ -46,7 +46,7 @@
 })(elements[i]);
 }
 }
-</script>
+
 
 //simonenko.su/38146501854/improving-ux-for-web-form
 /*
