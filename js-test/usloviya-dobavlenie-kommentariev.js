@@ -224,7 +224,7 @@ commentForm.onsubmit = function (evt) {
     evt.preventDefault();
 
     let newComment = document.createElement('li');
-    newComment.classList.add('user-comment');
+   newComment.classList.add('user-comment');
     newComment.textContent = commentField.value;
     commentField.value = '';
     commentList.append(newComment);
