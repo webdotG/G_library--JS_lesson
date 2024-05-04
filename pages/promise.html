@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Промисы в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Промисы в JavaScript</h1>
+    <p>Промисы в JavaScript представляют собой объекты, которые связывают «выполняющий» код и «потребляющий» код. Промисы позволяют асинхронные операции возвращать значения подобно синхронным операциям: вместо сразу возвращаемого конечного значения, асинхронный метод возвращает промис на получение результата в будущем.</p>
+
+    <h2>Создание промиса</h2>
+    <p>Промис создается с помощью конструктора Promise, который принимает функцию-исполнитель с двумя параметрами: resolve и reject.</p>
+    <pre>
+        let promise = new Promise(function(resolve, reject) {
+            // Выполнение некоторой асинхронной операции
+            setTimeout(() => {
+                resolve("результат");
+            }, 1000);
+        });
+
+        promise.then(
+            result => console.log(result),  // "результат" после 1 секунды
+            error => console.log(error)     // не выполнится
+        );
+    </pre>
+
+    <h2>Методы промисов</h2>
+    <p>Промисы предоставляют несколько методов для управления асинхронными операциями:</p>
+    <ul>
+        <li><strong>.then()</strong> — устанавливает обработчики успешного завершения и ошибок промиса.</li>
+        <li><strong>.catch()</strong> — устанавливает обработчик ошибок промиса.</li>
+        <li><strong>.finally()</strong> — позволяет выполнить код после завершения промиса, независимо от его исхода.</li>
+    </ul>
+
+    <pre>
+        promise
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
+            .finally(() => console.log("Промис завершён"));
+    </pre>
+
+    <h2>Цепочки промисов</h2>
+    <p>Промисы можно соединять в цепочки, чтобы выполнить серию асинхронных операций последовательно.</p>
+    <pre>
+        new Promise(function(resolve, reject) {
+            setTimeout(() => resolve(1), 1000); // (*)
+        })
+        .then(function(result) { // (**)
+            console.log(result); // 1
+            return result * 2;
+        })
+        .then(function(result) { // (***)
+            console.log(result); // 2
+            return result * 3;
+        })
+        .then(function(result) {
+            console.log(result); // 6
+            return result * 4;
+        });
+    </pre>
+
+    <h2>Обработка ошибок</h2>
+    <p>Обработка ошибок в промисах критична для правильного управления асинхронным кодом.</p>
+    <pre>
+        new Promise((resolve, reject) => {
+            throw new Error("Ошибка!");
+        })
+        .catch(function(error) {
+            console.log(error); // Ошибка!
+        });
+    </pre>
+
+</body>
+</html>

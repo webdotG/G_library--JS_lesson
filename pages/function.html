@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функции в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Функции в JavaScript</h1>
+    <p>Функции — это основные "строительные блоки" программ на JavaScript. Они позволяют коду быть вызванным многократно, сохраняя при этом чистоту и порядок в структуре кода.</p>
+
+    <h2>Определение функции</h2>
+    <p>Существует несколько способов определения функций в JavaScript:</p>
+    <ul>
+        <li>Объявление функции (Function Declaration)</li>
+        <li>Функциональное выражение (Function Expression)</li>
+        <li>Стрелочные функции (Arrow Functions)</li>
+    </ul>
+
+    <h3>Примеры определения функций</h3>
+    <pre>
+        // Объявление функции
+        function greet(name) {
+            return "Hello " + name + "!";
+        }
+
+        // Функциональное выражение
+        const square = function(number) {
+            return number * number;
+        };
+
+        // Стрелочная функция
+        const getSum = (a, b) => a + b;
+    </pre>
+
+    <h2>Вызов функции</h2>
+    <p>Функцию можно вызвать, используя её имя, за которым следуют круглые скобки с аргументами, если они необходимы.</p>
+    <pre>
+        console.log(greet("Alice")); // "Hello Alice!"
+        console.log(square(5));      // 25
+        console.log(getSum(3, 4));   // 7
+    </pre>
+
+    <h2>Параметры и аргументы</h2>
+    <p>Функции могут принимать параметры, которые представляют собой переменные, используемые в определении функции. При вызове функции, ей передаются аргументы, которые являются значениями этих переменных.</p>
+
+    <h3>Значения по умолчанию</h3>
+    <p>В ES6 и новее можно задавать значения по умолчанию для параметров функции.</p>
+    <pre>
+        function greet(name, greeting = "Hello") {
+            return greeting + " " + name + "!";
+        }
+
+        console.log(greet("Alice"));              // "Hello Alice!"
+        console.log(greet("Bob", "Good morning")); // "Good morning Bob!"
+    </pre>
+
+    <h2>Возврат значения</h2>
+    <p>Функции могут возвращать значения. Если функция не возвращает значение, по умолчанию она возвращает <code>undefined</code>.</p>
+    <pre>
+        function getArea(width, height) {
+            return width * height;
+        }
+
+        let area = getArea(5, 3);
+        console.log(area); // 15
+    </pre>
+
+    
+</body>
+</html>

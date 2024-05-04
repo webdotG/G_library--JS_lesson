@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="#" type="image/x-icon">
+    <title>JavaScript в браузере</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>JavaScript в браузере</h1>
+    <p>Браузер — это программа для отображения веб-страниц. Он обладает следующими основными компонентами для работы с JavaScript:</p>
+
+    <h2>Основные компоненты браузера</h2>
+    <ul>
+        <li>
+            <h3>Объектная модель документа (DOM)</h3>
+            <p>DOM позволяет JavaScript взаимодействовать с содержимым веб-страницы, изменяя его структуру, стиль или содержание.</p>
+        </li>
+        <li>
+            <h3>Объектная модель браузера (BOM)</h3>
+            <p>BOM предоставляет объекты для работы с браузером, включая управление окнами, местоположением, историей и другими функциями, не связанными напрямую с документом.</p>
+        </li>
+        <li>
+            <h3>JavaScript Engine</h3>
+            <p>Движок JavaScript, такой как V8 в Google Chrome, интерпретирует и выполняет JavaScript код.</p>
+        </li>
+    </ul>
+
+    <h2>Способы подключения JavaScript к веб-странице</h2>
+    <ul>
+        <li>
+            <h3>Внутренний JavaScript</h3>
+            <p>JavaScript код размещается непосредственно в HTML документе внутри тегов <code>&lt;script&gt;</code>.</p>
+            <pre><code>&lt;script&gt;
+console.log('Привет, мир!');
+&lt;/script&gt;</code></pre>
+        </li>
+        <li>
+            <h3>Внешний JavaScript</h3>
+            <p>JavaScript код размещается в отдельном файле и подключается к HTML документу с помощью атрибута <code>src</code> тега <code>&lt;script&gt;</code>.</p>
+            <pre><code>&lt;script src="script.js"&gt;&lt;/script&gt;</code></pre>
+        </li>
+    </ul>
+
+    <h2>Загрузка и выполнение JavaScript</h2>
+    <p>При загрузке страницы браузер обрабатывает HTML, построение DOM и последовательно загружает и выполняет скрипты. Атрибуты <code>async</code> и <code>defer</code> управляют порядком выполнения внешних скриптов:</p>
+    <ul>
+        <li>
+            <h3>defer</h3>
+            <p>Скрипты с атрибутом <code>defer</code> загружаются в фоне и выполняются после полной загрузки HTML, но перед событием <code>DOMContentLoaded</code>.</p>
+        </li>
+        <li>
+            <h3>async</h3>
+            <p>Скрипты с атрибутом <code>async</code> загружаются независимо от загрузки страницы и выполняются как только будут загружены, не блокируя рендеринг страницы.</p>
+        </li>
+    </ul>
+
+    <h2>Построение DOM и CSSOM</h2>
+    <p>После загрузки HTML-кода браузер строит DOM (структура документа) и CSSOM (стили), объединяет их для создания рендер-дерева, которое затем используется для отрисовки страницы на экране.</p>
+
+    <h2>События в JavaScript</h2>
+    <p>JavaScript реагирует на пользовательские действия через события, такие как клики, наведение мыши или нажатия клавиш. Обработчики событий можно добавлять напрямую к элементам:</p>
+    <pre><code>document.getElementById('myButton').onclick = function() {
+    alert('Кнопка нажата!');
+};</code></pre>
+
+</body>
+</html>

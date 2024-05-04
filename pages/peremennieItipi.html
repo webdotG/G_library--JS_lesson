@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Переменные и типы в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Переменные и типы данных в JavaScript</h1>
+    <h2>Переменные</h2>
+    <p>В JavaScript переменные могут быть объявлены с помощью трех ключевых слов: <code>var</code>, <code>let</code> и <code>const</code>.</p>
+    <ul>
+        <li><code>var</code> – традиционный способ объявления переменных, доступен во всех версиях JavaScript.</li>
+        <li><code>let</code> – современный способ объявления переменных с блочной областью видимости.</li>
+        <li><code>const</code> – также имеет блочную область видимости, но используется для объявления констант, значения которых не могут быть изменены после установки.</li>
+    </ul>
+
+    <h3>Примеры объявления переменных</h3>
+    <pre>
+        var name = 'Alice';
+        let age = 25;
+        const birthday = 'April 12';
+    </pre>
+
+    <h2>Типы данных</h2>
+    <p>JavaScript — язык с динамической типизацией. Все типы данных могут быть разделены на две категории: примитивы и объекты.</p>
+    
+    <h3>Примитивные типы</h3>
+    <ul>
+        <li><code>String</code> – строки, например "Hello, world!"</li>
+        <li><code>Number</code> – числа, могут быть целыми или с плавающей точкой.</li>
+        <li><code>Boolean</code> – логический тип данных, имеет всего два значения: true и false.</li>
+        <li><code>undefined</code> – тип для неопределенных переменных.</li>
+        <li><code>null</code> – тип для объектов, у которых нет значения.</li>
+        <li><code>Symbol</code> – используется для создания уникальных идентификаторов.</li>
+        <li><code>BigInt</code> – для работы с числами, размер которых превышает <code>Number.MAX_SAFE_INTEGER</code>.</li>
+    </ul>
+
+    <h3>Тип объект</h3>
+    <p>Объекты в JavaScript — это структуры данных, которые могут содержать набор пар ключ-значение. Объекты могут быть использованы для создания массивов, функций, и других сложных структур.</p>
+
+    <h3>Примеры использования типов данных</h3>
+    <pre>
+        let message = "Hello, world!";  // String
+        let number = 42;               // Number
+        let isJavaScriptFun = true;    // Boolean
+        let user = {                   // Object
+            name: "Alice",
+            age: 25
+        };
+        let bigNumber = 123456789012345678901234567890n;  // BigInt
+    </pre>
+</body>
+</html>

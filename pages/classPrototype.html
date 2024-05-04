@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классы и прототипы в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Классы и прототипы в JavaScript</h1>
+    <p>Классы и прототипы являются фундаментальными аспектами объектно-ориентированного программирования в JavaScript, позволяющие создавать сложные и структурированные программы.</p>
+
+    <h2>Классы в JavaScript</h2>
+    <p>Классы в JavaScript представляют собой "синтаксический сахар" над прототипным наследованием и предоставляют более чистый и понятный способ создания объектов и реализации наследования.</p>
+    <pre>
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+
+            speak() {
+                console.log(`${this.name} makes a noise.`);
+            }
+        }
+
+        class Dog extends Animal {
+            constructor(name) {
+                super(name); // вызов конструктора родительского класса
+            }
+
+            speak() {
+                console.log(`${this.name} barks.`);
+            }
+        }
+
+        let dog = new Dog('Rex');
+        dog.speak(); // Rex barks.
+    </pre>
+
+    <h2>Прототипы</h2>
+    <p>Прототипное наследование в JavaScript является механизмом, через который объекты наследуют свойства и методы друг от друга. Это более прямой механизм наследования, по сравнению с классами, который существовал в JavaScript гораздо раньше.</p>
+    <pre>
+        function Animal(name) {
+            this.name = name;
+        }
+
+        Animal.prototype.speak = function() {
+            console.log(`${this.name} makes a noise.`);
+        };
+
+        function Dog(name) {
+            Animal.call(this, name); // вызов конструктора Animal
+        }
+
+        Dog.prototype = Object.create(Animal.prototype);
+        Dog.prototype.constructor = Dog;
+
+        Dog.prototype.speak = function() {
+            console.log(`${this.name} barks.`);
+        };
+
+        let dog = new Dog('Rex');
+        dog.speak(); // Rex barks.
+    </pre>
+
+    <h2>Сравнение классов и прототипов</h2>
+    <p>Классы предоставляют более формальную и понятную структуру для наследования и инкапсуляции, в то время как прототипы предлагают более гибкий подход к наследованию и созданию объектов. Использование зависит от предпочтений разработчика и спецификаций проекта.</p>
+
+</body>
+</html>

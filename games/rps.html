@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра Крестики-нолики</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./rps_style.css">
+</head>
+
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <script src="./rpsLogic.js"></script>
+    <h1>Игра Крестики-нолики</h1>
+    <div id="game" class="grid">
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+        <div class="cell" onclick="makeMove(this)"></div>
+    </div>
+
+    <article>
+
+        <section>
+            <h2>Шаг 1: Понимание задачи</h2>
+            <p>Первый шаг в разработке любой программы — понимание того, что именно нужно сделать. Для
+                "Крестиков-ноликов" задача состоит в создании игры, где два игрока по очереди ставят на сетке 3x3 свои
+                символы (X и O). Побеждает тот, кто первым выстроит в ряд три своих символа по горизонтали, вертикали
+                или диагонали.</p>
+        </section>
+
+        <section>
+            <h2>Шаг 2: Разработка интерфейса</h2>
+            <p>Следующий шаг — создание визуального представления игры. Используется HTML для разметки и CSS для
+                стилизации. Сетка 3x3 создается с помощью элементов <code>&lt;div&gt;</code>, которые реагируют на клики
+                (события <code>onclick</code>), что позволяет игрокам взаимодействовать с игрой.</p>
+        </section>
+
+        <section>
+            <h2>Шаг 3: Определение состояний</h2>
+            <p>Перед написанием кода нужно определить, какие состояния или данные необходимы для работы игры. В
+                "Крестики-нолики" это:</p>
+            <ul>
+                <li>Текущий игрок (X или O).</li>
+                <li>Состояние сетки (какие клетки заняты, а какие свободны).</li>
+            </ul>
+        </section>
+
+        <section>
+
+            <h2>Шаг 4: Написание логики игры</h2>
+
+            <h2>Код и объяснение</h2>
+            <h3>1. Определение текущего игрока и функция makeMove</h3>
+            <pre><code>let currentPlayer = 'X';
+function makeMove(cell) {
+    if (cell.textContent) return;  // Если клетка уже занята, прерываем функцию
+    cell.textContent = currentPlayer;  // Устанавливаем символ текущего игрока в клетку
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';  // Меняем игрока
+    checkWinner();  // Вызываем функцию для проверки победы
+}</code></pre>
+            <p>Функция <code>makeMove</code> вызывается при клике на клетку. Она проверяет, занята ли клетка. Если нет,
+                то ставит в клетку символ текущего игрока и вызывает функцию <code>checkWinner</code> для проверки
+                наличия выигрышной комбинации.</p>
+
+                <h3>Функция makeMove</h3>
+                <pre><code>function makeMove(cell) {
+                // Проверяем, пуста ли выбранная клетка
+                if (cell.textContent) return;
+                // Если пуста, ставим символ текущего игрока
+                cell.textContent = currentPlayer;
+                // Меняем игрока на следующего
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                // Проверяем, не выиграл ли кто-нибудь
+                checkWinner();
+            }</code></pre>
+    
+
+            <h3>2. Проверка на победу с функцией checkWinner</h3>
+            <pre><code>function checkWinner() {
+    const cells = document.querySelectorAll('.cell'); // Получаем все клетки
+    const combinations = [  // Все возможные выигрышные комбинации
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    for (const combo of combinations) {
+        const [a, b, c] = combo;  // Деструктуризация для получения индексов клеток в комбинации
+        if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+            alert('Выиграл ' + cells[a].textContent);  // Объявляем победителя
+            window.location.reload();  // Перезагружаем страницу для новой игры
+        }
+    }
+}</code></pre>
+
+
+
+<h3>Функция checkWinner</h3>
+            <pre><code>function checkWinner() {
+    // Предопределенные комбинации выигрышных клеток
+    const combinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Горизонтали
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Вертикали
+        [0, 4, 8], [2, 4, 6]             // Диагонали
+    ];
+    // Перебираем все комбинации
+    combinations.forEach(combo => {
+        const [a, b, c] = combo;
+        // Проверяем, заполнены ли клетки одним и тем же символом
+        if (cells[a].textContent &&
+            cells[a].textContent === cells[b].textContent &&
+            cells[a].textContent === cells[c].textContent) {
+            // Объявляем победителя
+            alert('Выиграл ' + cells[a].textContent);
+            // Перезагружаем игру
+            window.location.reload();
+        }
+    });
+}</code></pre>
+
+
+            
+            
+
+        </section>
+
+        <section>
+            <h2>Шаг 5: Реакция на победу</h2>
+            <p>Когда один из игроков выигрывает, программа выводит сообщение с поздравлением и автоматически
+                перезагружает страницу для новой игры.</p>
+        </section>
+
+    </article>
+
+</body>
+
+</html>

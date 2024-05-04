@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асинхронные функции в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Асинхронные функции в JavaScript</h1>
+    <p>Асинхронные функции в JavaScript позволяют выполнять асинхронный код так, как будто он синхронный. Это достигается с помощью ключевых слов <code>async</code> и <code>await</code>.</p>
+
+    <h2>Ключевое слово <code>async</code></h2>
+    <p>Ключевое слово <code>async</code> используется для объявления асинхронной функции, которая возвращает промис.</p>
+    <pre>
+        async function fetchData() {
+            return "Data fetched";
+        }
+
+        fetchData().then(data => console.log(data)); // Data fetched
+    </pre>
+
+    <h2>Ключевое слово <code>await</code></h2>
+    <p><code>await</code> используется для ожидания результата промиса. Оно может быть использовано только внутри асинхронной функции.</p>
+    <pre>
+        async function fetchData() {
+            let promise = new Promise((resolve, reject) => {
+                setTimeout(() => resolve("Done!"), 1000)
+            });
+
+            let result = await promise; // ждет, пока промис не выполнится
+            console.log(result); // "Done!"
+        }
+
+        fetchData();
+    </pre>
+
+    <h2>Обработка ошибок</h2>
+    <p>Для обработки ошибок в асинхронных функциях используется <code>try...catch</code>.</p>
+    <pre>
+        async function fetchDataWithErrorHandling() {
+            try {
+                let response = await fetch('http://invalid-url');
+                let data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.log('Ошибка:', error);
+            }
+        }
+
+        fetchDataWithErrorHandling();
+    </pre>
+
+    <h2>Преимущества асинхронных функций</h2>
+    <p>Асинхронные функции упрощают работу с асинхронным кодом, делая его более читаемым и понятным, как синхронный код.</p>
+
+</body>
+</html>

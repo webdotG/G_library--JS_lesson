@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Массивы в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Массивы в JavaScript</h1>
+    <p>Массивы в JavaScript — это высокоуровневые списочные структуры, которые используются для хранения упорядоченных коллекций данных.</p>
+
+    <h2>Создание массивов</h2>
+    <p>Массивы можно создавать с помощью литеральной нотации или конструктора Array.</p>
+    <pre>
+        // Литеральная нотация
+        let fruits = ["Apple", "Banana", "Cherry"];
+
+        // Конструктор Array
+        let numbers = new Array(1, 2, 3, 4, 5);
+    </pre>
+
+    <h2>Доступ к элементам и изменение массивов</h2>
+    <p>Элементы массива доступны по их индексу. Индексация начинается с нуля.</p>
+    <pre>
+        console.log(fruits[0]); // Apple
+        fruits[1] = "Blackberry";
+        console.log(fruits); // ["Apple", "Blackberry", "Cherry"]
+    </pre>
+
+    <h2>Методы работы с массивами</h2>
+    <p>JavaScript предоставляет множество методов для работы с массивами, включая добавление, удаление элементов и многое другое.</p>
+    <pre>
+        // Добавление элемента в конец массива
+        fruits.push("Durian");
+        console.log(fruits);
+
+        // Удаление последнего элемента массива
+        fruits.pop();
+        console.log(fruits);
+
+        // Добавление элемента в начало массива
+        fruits.unshift("Strawberry");
+        console.log(fruits);
+
+        // Удаление первого элемента массива
+        fruits.shift();
+        console.log(fruits);
+    </pre>
+
+    <h2>Итерация по массивам</h2>
+    <p>Для итерации по массивам можно использовать различные циклы и методы массивов.</p>
+    <pre>
+        // Цикл for
+        for (let i = 0; i < fruits.length; i++) {
+            console.log(fruits[i]);
+        }
+
+        // Метод forEach
+        fruits.forEach(function(item, index, array) {
+            console.log(item, index);
+        });
+    </pre>
+
+    <h2>Другие полезные методы массивов</h2>
+    <p>Массивы в JavaScript включают методы для фильтрации, преобразования элементов, сортировки, и многого другого.</p>
+    <pre>
+        // Метод map
+        let lengths = fruits.map(function(item) {
+            return item.length;
+        });
+        console.log(lengths);
+
+        // Метод filter
+        let longFruits = fruits.filter(function(item) {
+            return item.length > 6;
+        });
+        console.log(longFruits);
+
+        // Метод sort
+        let sortedFruits = fruits.sort();
+        console.log(sortedFruits);
+    </pre>
+
+</body>
+</html>

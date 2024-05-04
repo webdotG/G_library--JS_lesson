@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конспект по Node.js</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Node.js</h1>
+    <p>Node.js — это среда выполнения JavaScript, построенная на базе JavaScript движка V8 от Chrome. Это позволяет выполнять код JavaScript вне браузера.</p>
+
+    <h2>Что такое Node.js?</h2>
+    <p>Node.js используется для разработки серверных приложений и программного обеспечения на стороне сервера. Он позволяет разработчикам использовать JavaScript для написания серверного кода, что облегчает разработку полноценных веб-приложений, использующих один и тот же язык как на клиенте, так и на сервере.</p>
+
+    <h2>Особенности Node.js</h2>
+    <ul>
+        <li><strong>Асинхронное и событийно-ориентированное программирование:</strong> Все API Node.js являются асинхронными, то есть неблокирующими. Это означает, что сервер, основанный на Node.js, может обрабатывать события в режиме реального времени.</li>
+        <li><strong>Однопоточное выполнение:</strong> Несмотря на то, что Node.js работает в одном потоке для предотвращения блокировки ввода/вывода, это не мешает обрабатывать несколько запросов одновременно благодаря механизму событийных циклов.</li>
+        <li><strong>Модульная структура:</strong> Node.js имеет богатую экосистему модулей, известную как npm, где разработчики могут обмениваться различными пакетами, что значительно ускоряет процесс разработки.</li>
+    </ul>
+
+    <h2>Пример простого сервера на Node.js</h2>
+    <pre><code>const http = require('http');
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello, World!\n');
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});</code></pre>
+
+    <p>Этот простой сервер создан с использованием встроенного модуля HTTP, который поставляется вместе с Node.js и позволяет разработчикам создавать веб-серверы, обрабатывающие HTTP-запросы и ответы.</p>
+
+</body>
+</html>

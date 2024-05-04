@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модули в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Модули в JavaScript</h1>
+    <p>Модули в JavaScript позволяют разделять код на меньшие, независимые части, которые можно импортировать и использовать в других файлах JavaScript. Это обеспечивает лучшую организацию кода, повышает его переиспользуемость и упрощает поддержку.</p>
+
+    <h2>Определение модуля</h2>
+    <p>Модуль в JavaScript — это файл с кодом, который экспортирует определенные функции, объекты или переменные для использования в других частях приложения.</p>
+    <pre>
+        // Пример файла math.js
+        export function sum(x, y) {
+            return x + y;
+        }
+
+        export function multiply(x, y) {
+            return x * y;
+        }
+    </pre>
+
+    <h2>Импорт модуля</h2>
+    <p>Импорт модулей позволяет включить экспортированные функции, объекты или переменные из одного файла в другой.</p>
+    <pre>
+        // Пример импорта функций из файла math.js
+        import { sum, multiply } from './math.js';
+
+        console.log(sum(5, 3)); // 8
+        console.log(multiply(4, 2)); // 8
+    </pre>
+
+    <h2>Экспорт по умолчанию</h2>
+    <p>JavaScript также поддерживает экспорт по умолчанию, который позволяет указать главную сущность модуля, которую можно импортировать без фигурных скобок.</p>
+    <pre>
+        // Экспорт по умолчанию в файле calculator.js
+        export default class Calculator {
+            add(x, y) {
+                return x + y;
+            }
+        }
+    </pre>
+    <pre>
+        // Импорт класса Calculator из файла calculator.js
+        import Calculator from './calculator.js';
+
+        const calc = new Calculator();
+        console.log(calc.add(2, 3)); // 5
+    </pre>
+
+    <h2>Преимущества модулей</h2>
+    <p>Использование модулей в JavaScript приводит к следующим преимуществам:</p>
+    <ul>
+        <li>Повышение переиспользуемости кода.</li>
+        <li>Лучшая организация и структурирование кода.</li>
+        <li>Упрощение обслуживания и обновления кода.</li>
+        <li>Изоляция компонентов, снижающая риск конфликтов в именах переменных.</li>
+    </ul>
+
+</body>
+</html>

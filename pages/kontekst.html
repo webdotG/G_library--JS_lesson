@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контекст в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Контекст в JavaScript</h1>
+    <p>Контекст в JavaScript часто относится к значению <code>this</code> в теле функции. <code>this</code> представляет объект, в контексте которого была вызвана функция, и может меняться в зависимости от того, как и где вызывается функция.</p>
+
+    <h2>Правила определения контекста</h2>
+    <ul>
+        <li>В глобальной области видимости <code>this</code> относится к глобальному объекту (в браузере это <code>window</code>).</li>
+        <li>Внутри функции <code>this</code> также относится к глобальному объекту, если функция не вызвана как метод объекта.</li>
+        <li>Когда функция вызывается как метод объекта, <code>this</code> относится к этому объекту.</li>
+        <li>В стрелочных функциях <code>this</code> сохраняет значение из внешней функции, где она была создана.</li>
+    </ul>
+
+    <h3>Примеры использования <code>this</code></h3>
+    <pre>
+        // Глобальный контекст
+        console.log(this); // В браузере это будет 'window'
+
+        // Функция в глобальном контексте
+        function show() {
+            console.log(this);
+        }
+        show(); // В строгом режиме 'undefined', иначе 'window'
+
+        // Метод объекта
+        let user = {
+            name: 'Alice',
+            greet: function() {
+                console.log("Hello, " + this.name);
+            }
+        };
+        user.greet(); // "Hello, Alice"
+
+        // Стрелочная функция
+        const team = {
+            members: ['Alice', 'Bob'],
+            teamName: 'Super Coders',
+            teamGreet: function() {
+                return this.members.map(member => `Hello, ${member} from ${this.teamName}`);
+            }
+        };
+        console.log(team.teamGreet());
+    </pre>
+    <p>Стрелочные функции не имеют собственного <code>this</code>, <code>arguments</code>, <code>super</code> или <code>new.target</code>, что делает их особенно полезными для использования в контексте, где необходимо сохранять контекст вызова.</p>
+
+    <h2>Изменение контекста</h2>
+    <p>Контекст функции может быть явно изменён с помощью методов <code>call()</code>, <code>apply()</code> и <code>bind()</code>.</p>
+    <pre>
+        function introduce(industry) {
+            console.log(`Hello, I am ${this.name} and I work in ${industry}.`);
+        }
+
+        const person = { name: 'Alice' };
+        
+        introduce.call(person, 'Software'); // Hello, I am Alice and I work in Software.
+        introduce.apply(person, ['Software']); // Аналогично call, но аргументы передаются массивом.
+
+        const boundIntroduce = introduce.bind(person);
+        boundIntroduce('Software'); // Позволяет привязать функцию к контексту.
+    </pre>
+</body>
+</html>

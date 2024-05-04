@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объекты в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Объекты в JavaScript</h1>
+    <p>Объекты — это коллекции пар ключ-значение, где ключами являются строки, а значениями могут быть как примитивы, так и другие объекты. Объекты в JavaScript могут быть использованы для организации данных и поведения в структурированный формат.</p>
+
+    <h2>Создание объектов</h2>
+    <p>Существует несколько способов создать объект в JavaScript:</p>
+    <ul>
+        <li>Литеральная нотация</li>
+        <li>Конструктор <code>Object()</code></li>
+        <li>Конструкторы, определённые пользователем</li>
+        <li>Метод <code>Object.create()</code></li>
+    </ul>
+
+    <h3>Примеры создания объектов</h3>
+    <pre>
+        // Литеральная нотация
+        let person = {
+            name: "Alice",
+            age: 25
+        };
+
+        // Конструктор Object()
+        let person2 = new Object();
+        person2.name = "Bob";
+        person2.age = 30;
+
+        // Конструктор, определённый пользователем
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        let person3 = new Person("Carol", 27);
+
+        // Object.create()
+        let person4 = Object.create(person);
+        person4.name = "Dave";
+    </pre>
+
+    <h2>Работа с объектами</h2>
+    <p>Доступ к свойствам объекта можно получить двумя способами:</p>
+    <ul>
+        <li>Точечная нотация: <code>person.name</code></li>
+        <li>Квадратные скобки: <code>person["name"]</code></li>
+    </ul>
+
+    <h3>Добавление и удаление свойств</h3>
+    <pre>
+        // Добавление свойства
+        person.city = "New York";
+
+        // Удаление свойства
+        delete person.age;
+    </pre>
+
+    <h2>Прототипы и наследование</h2>
+    <p>Каждый объект в JavaScript имеет "прототип", от которого он наследует свойства и методы. Прототипы являются основой для наследования в JavaScript.</p>
+
+    <h3>Пример наследования</h3>
+    <pre>
+        // У объекта person4 уже есть свойства name и age, наследованные от person
+        console.log(person4.name); // выводит "Dave"
+        console.log(person4.age);  // выводит 25, унаследовано от person
+    </pre>
+</body>
+</html>

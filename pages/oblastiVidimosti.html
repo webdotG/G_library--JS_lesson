@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Области видимости в JavaScript</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="/index.html" class="home__btn--absolut">home</a>
+    <h1>Области видимости в JavaScript</h1>
+    <p>Область видимости определяет, где и как переменные и функции могут быть доступны в вашем коде. JavaScript поддерживает глобальную, локальную и блочную области видимости, а также особенности замыканий.</p>
+
+    <h2>Глобальная область видимости</h2>
+    <p>Переменная объявленная вне всех функций или блоков кода, считается глобальной и доступна из любой части кода.</p>
+    <pre>
+        var globalVar = "Я глобальная переменная";
+
+        function testScope() {
+            return globalVar; // Доступ к глобальной переменной внутри функции
+        }
+
+        console.log(testScope()); // "Я глобальная переменная"
+    </pre>
+
+    <h2>Локальная область видимости</h2>
+    <p>Переменные, объявленные внутри функции, находятся в локальной области видимости этой функции и доступны только внутри неё.</p>
+    <pre>
+        function testLocalScope() {
+            var localVar = "Я локальная переменная";
+            return localVar;
+        }
+
+        console.log(testLocalScope()); // "Я локальная переменная"
+        // console.log(localVar); // Ошибка: localVar is not defined
+    </pre>
+
+    <h2>Блочная область видимости</h2>
+    <p>JavaScript (начиная с ES6) поддерживает блочную область видимости, которая позволяет объявлять переменные с помощью <code>let</code> и <code>const</code> в пределах блоков <code>{}</code>.</p>
+    <pre>
+        function testBlockScope() {
+            if (true) {
+                let blockVar = "Я переменная в блочной области видимости";
+                console.log(blockVar); // Доступна только в этом блоке
+            }
+            // console.log(blockVar); // Ошибка: blockVar is not defined
+        }
+
+        testBlockScope();
+    </pre>
+
+    <h2>Замыкания</h2>
+    <p>Замыкание происходит, когда функция запоминает и продолжает доступ к переменным из своей области видимости, даже после того как она выполнена в месте, где была первоначально объявлена.</p>
+    <pre>
+        function makeAdder(x) {
+            return function(y) {
+                return x + y;
+            };
+        }
+
+        var addFive = makeAdder(5);
+        console.log(addFive(3)); // 8
+    </pre>
+<a href="./kontekst.html">KONTEKST</a>
+</body>
+</html>
