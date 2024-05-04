@@ -1,9 +1,9 @@
-import { PAGES } from '../CONST.js';
+import { GAMES } from '../CONST.js';
 
-export function FileList() {
-    const listContainer = document.getElementById('fileList');
+export function GamesList() {
+    const listContainer = document.getElementById('gamesList');
 
-    PAGES.forEach((file, index) => {
+    GAMES.forEach((file, index) => {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = file.path;

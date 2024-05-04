@@ -1,5 +1,3 @@
-/* 
-
 /* Анимация появления элементов списка */
 @keyframes fadeInUp {
   from {
@@ -14,15 +12,14 @@
 
 /* Стили для списка */
 ul#fileList {
-  display: flex; /* Используем Flexbox для расположения элементов списка */
-  flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
+  display: flex;
+  flex-wrap: wrap; 
   padding: 20px;
   margin: 0;
-  gap: 20px; /* Расстояние между элементами списка */
-  justify-content: space-around; /* Равномерно распределяет элементы по горизонтали */
+  gap: 20px; 
+  justify-content: space-around; 
 }
 
-/* Стили для элементов списка */
 ul#fileList li {
   width: 200px; 
   height: 100px;
@@ -47,4 +44,4 @@ ul#fileList a{
   align-items: center; 
   justify-content: center; 
   text-align: center;
-} */
+}

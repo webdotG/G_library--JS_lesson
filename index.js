@@ -1,5 +1,7 @@
-import { populateFileList } from './js/pajesList.js';
+import { FileList } from './js/pajesList.js';
+import { GamesList  } from './js/gamesList.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  populateFileList();
+  FileList();
+  GamesList();
 });
