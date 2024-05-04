@@ -3,12 +3,10 @@ import { GAMES } from '../CONST.js';
 
 export function populateFileList() {
     const listContainer = document.getElementById('fileList');
-    listContainer.innerHTML = ''; // Очистка списка
 
     const combinedData = [...PAGES, ...GAMES]; // Объединение данных
 
     combinedData.forEach((file, index) => {
-        setTimeout(() => {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = file.path;
@@ -30,6 +28,5 @@ export function populateFileList() {
                 link.classList.remove('hover-effect');
             });
 
-        }, 100 * index);
     });
 }

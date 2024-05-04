@@ -1,0 +1,50 @@
+/* 
+
+/* Анимация появления элементов списка */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px); 
+  }
+}
+
+/* Стили для списка */
+ul#fileList {
+  display: flex; /* Используем Flexbox для расположения элементов списка */
+  flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
+  padding: 20px;
+  margin: 0;
+  gap: 20px; /* Расстояние между элементами списка */
+  justify-content: space-around; /* Равномерно распределяет элементы по горизонтали */
+}
+
+/* Стили для элементов списка */
+ul#fileList li {
+  width: 200px; 
+  height: 100px;
+  opacity: 0; 
+  animation: fadeInUp 0.5s ease forwards; 
+  background-color:#e6e6e6;
+  border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #333; 
+  cursor: pointer;
+}
+
+ul#fileList li:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+
+ul#fileList a{
+  width:100%;
+  height:100%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+} */
