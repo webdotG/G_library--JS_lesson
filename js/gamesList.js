@@ -1,7 +1,8 @@
 import { GAMES } from '../CONST.js';
 
 export function GamesList() {
-    const listContainer = document.getElementById('gamesList');
+    const listGames = document.getElementById('gamesList');
+    console.log('listGAMES : ',listGames)
 
     GAMES.forEach((file, index) => {
             const listItem = document.createElement('li');
@@ -11,7 +12,7 @@ export function GamesList() {
             link.classList.add('hover-effect'); // Добавление класса для анимации
 
             listItem.appendChild(link);
-            listContainer.appendChild(listItem);
+            listGames.appendChild(listItem);
 
             // Добавляем анимацию с задержкой
             listItem.style.animationDelay = `${index * 100}ms`;

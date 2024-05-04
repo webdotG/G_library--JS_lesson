@@ -11,7 +11,7 @@
 }
 
 /* Стили для списка */
-ul#fileList {
+ul#fileList,ul#gamesList {
   display: flex;
   flex-wrap: wrap; 
   padding: 20px;
@@ -20,7 +20,7 @@ ul#fileList {
   justify-content: space-around; 
 }
 
-ul#fileList li {
+ul#fileList li,ul#gamesList li {
   width: 200px; 
   height: 100px;
   opacity: 0; 
@@ -32,12 +32,12 @@ ul#fileList li {
   cursor: pointer;
 }
 
-ul#fileList li:hover {
+ul#fileList li:hover,ul#gamesList li:hover {
   transform: translateY(-5px); 
   box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
 }
 
-ul#fileList a{
+ul#fileList a,ul#gamesList a{
   width:100%;
   height:100%;
   display: flex; 

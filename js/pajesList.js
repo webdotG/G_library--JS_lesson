@@ -1,7 +1,8 @@
 import { PAGES } from '../CONST.js';
 
 export function FileList() {
-    const listContainer = document.getElementById('fileList');
+    const listPages = document.getElementById('fileList');
+    console.log('listPages : ',listPages)
 
     PAGES.forEach((file, index) => {
             const listItem = document.createElement('li');
@@ -11,7 +12,7 @@ export function FileList() {
             link.classList.add('hover-effect'); // Добавление класса для анимации
 
             listItem.appendChild(link);
-            listContainer.appendChild(listItem);
+            listPages.appendChild(listItem);
 
             // Добавляем анимацию с задержкой
             listItem.style.animationDelay = `${index * 100}ms`;

@@ -6,7 +6,6 @@
   --font-size-xlarge: 1.5rem; /* Очень большой размер текста */
 }
 
-/* Сброс стилей */
 html {
   box-sizing: border-box;
   font-size: 100%; /* 1rem = 16px по умолчанию */
