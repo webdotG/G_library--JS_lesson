@@ -1,4 +1,5 @@
-# Уроки по JavaScript
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" title="javascript" alt="javascript" width="69" height="69"/>&nbsp#  
+Уроки по JavaScript
 
 ## Описание
 Этот репозиторий содержи уроки/материал по JavaScript. Уроки предназначены для всех)
