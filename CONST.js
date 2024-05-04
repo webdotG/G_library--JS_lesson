@@ -1,5 +1,5 @@
 export const PAGES = [
-  { name: "Переменные и типы", path: "pages/peremennieTipi.html" },
+  { name: "Переменные и типы", path: "pages/peremennieItipi.html" },
   { name: "Операторы в JavaScript", path: "pages/operatori.html" },
   { name: "Функции", path: "pages/function.html" },
   { name: "Области видимости", path: "pages/oblastiVidimosti.html" },
